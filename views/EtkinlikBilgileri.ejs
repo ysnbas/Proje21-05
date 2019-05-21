@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Etkinliklere Göz At</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css" />
+    <link rel="stylesheet" type="text/css" href="/css/etkinlikbilgileri.css" />
+    <link rel=" stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <script type="text/javascript" src="home.js"></script>
+</head>
+
+</html>
+
+<body>
+    <!-- NAVBAR BAŞLANGIÇ-->
+    <nav class="navbar navbar-expand-lg navbar-light #2b5ca2">
+        <a class="navbar-brand" href="#">TechnoEvent</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item ">
+                    <a class="nav-link" style="color:white;" href="#">Anasayfa <span
+                            class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " style="color:white;" href="#">Etkinlik Oluştur</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link " style="color:white;" href="#">Oturum Aç</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Ara" aria-label="Search" />
+                <button class="btn btn-outline-light my-2 my-sm-0" style="    width: 80px;
+        height: 35px;" type="submit">
+                    Ara
+                </button>
+            </form>
+        </div>
+    </nav>
+
+    <div class="container">
+
+
+        <table>
+
+
+            <div class="card" style="width: 42rem; margin-top:85px;">
+                <div class="card-header" style="  padding-left: 270px;
+					font-size: 26px;
+					font-family: unset;">
+                    Etkinlik Bilgileri
+                </div>
+                <ul class="list-group list-group-flush">
+
+                    <% veri.forEach(function(p){ %>
+                    <li class="list-group-item">
+
+                        <h4>Etlinlik Adı</h4>
+                    </li>
+                    <li class="list-group-item">
+                        <%= p.EtkinlikAdi %>
+                    </li>
+                    <li class="list-group-item">
+                        <h4>Lokasyon</h4>
+                    </li>
+                    <li class="list-group-item">
+                        <%=p.Lokasyon%>
+                    </li>
+                    <% }); %>
+
+
+                </ul>
+            </div>
+    </div>
+
+    </table>
+
+
+
+
+</body>

@@ -1,0 +1,55 @@
+
+
+
+create function fn_UyeVarmi(@KullaniciAd nvarchar(50),@Sifre nvarchar(50))
+returns nvarchar(20)
+as
+begin
+declare @Varmi nvarchar(20)
+declare @Sayi int
+set @Sayi=(select Count(*) from tbl_Uye
+where KullanıcıAdi=@KullaniciAd and Sifre=@Sifre)
+
+if(@Sayi>0)
+begin
+set @Varmi='Evet'
+end
+else
+
+begin 
+set @Varmi='Hayir'
+end
+return @Varmi
+end
+
+
+select dbo.fn_UyeVarmi('sweetkite','123') as Sonuc
+--------------------------------------------------------------------------------
+
+
+createfunction fn_SifreOncesi(@email nvarchar(50),@kullaniciadi nvarchar(50))
+returns nvarchar(20)
+as
+begin
+declare @Varmi nvarchar(20)
+declare @Sayi int
+set @Sayi=(select Count(*) from tbl_Uye
+where KullanıcıAdi=@kullaniciadi and Email=@email)
+
+if(@Sayi>0)
+begin
+set @Varmi='Evet'
+end
+else
+
+begin 
+set @Varmi='Hayir'
+end
+return @Varmi
+end
+
+select dbo.fn_SifreOncesi('osman@gmail.com','hello') as varmı
+
+	
+
+	

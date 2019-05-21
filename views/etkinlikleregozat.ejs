@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Etkinliklere Göz At</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css" />
+    <link rel="stylesheet" type="text/css" href="/css/app.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <script type="text/javascript" src="home.js"></script>
+</head>
+
+<body>
+
+
+    <!-- NAVBAR BAŞLANGIÇ-->
+    <nav class="navbar navbar-expand-lg navbar-light #2b5ca2">
+        <a class="navbar-brand" href="#">TechnoEvent</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item ">
+                    <a class="nav-link" style="color:white;" href="Anasayfa">Anasayfa <span
+                            class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " style="color:white;" href="etkinlikolustur">Etkinlik Oluştur</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link " style="color:white;" href="Login">Oturum Aç</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Ara" aria-label="Search" />
+                <button class="btn btn-outline-light my-2 my-sm-0" style="    width: 80px;
+            height: 35px;" type="submit">Ara</button>
+            </form>
+        </div>
+    </nav>
+    <!-- NAVBAR BİTİŞ-->
+
+
+    <div class="container">
+
+        <div class="row" style="    margin-top: 63px;">
+            <% veri.forEach(function(İmgAc){ %>
+
+            <div class="card-wrapper col-lg-4 col-md-6 col-xs-12">
+                <div class="card">
+                    <div class="card-img-wrapper">
+                        <img class="card-img-top" src="<%= İmgAc.ResimYukle %>" alt="Card image cap">
+                        <!-- RESİMDE VERİTABNINDAN GELİCEK-->
+
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title"><%= İmgAc.EtkinlikAdi %></h5>
+                        <div class="card-content">
+                            <p class="card-text">
+                                <!-- BURAYA VERİTABANINDAN AÇIKLAMA GELCEK--><%= İmgAc.AciklamaBir %>
+                            </p>
+
+                            <a href="#" class="btn btn-primary">Etkinliğe git</a>
+                        </div>
+                    </div>
+
+                </div><br><br>
+
+            </div>
+            <% }); %>
+
+
+        </div>
+    </div>
+    </div>
+
+
+
+</body>
+
+</html>

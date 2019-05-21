@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hoşgeldiniz !</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css" />
+  <link rel="stylesheet" type="text/css" href="/css/app.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+  <script type="text/javascript" src="/js/app.js"></script>
+</head>
+
+
+<body>
+
+
+  <!-- NAVBAR BAŞLANGIÇ-->
+  <nav class="navbar navbar-expand-lg navbar-light #2b5ca2">
+    <a class="navbar-brand" href="#">TechnoEvent</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item ">
+          <a class="nav-link" style="color:white;" href="Anasayfa">Anasayfa <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " style="color:white;" href="etkinlikolustur">Etkinlik Oluştur</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link " style="color:white;" href="oturumac">Oturum Aç</a>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Ara" aria-label="Search" />
+        <button class="btn btn-outline-light my-2 my-sm-0" style="    width: 80px;
+        height: 35px;" type="submit">Ara</button>
+      </form>
+    </div>
+  </nav>
+  <!-- NAVBAR BİTİŞ-->
+
+
+  <!--- FORM KISIMI-->
+  <div class="ortaResim">
+    <img src="https://i.hizliresim.com/zj6Jlj.png" style="     height: 280px;margin-left: 32px; margin-top: 150px;" />
+    <h1 class="baslik">İşler tersmi gitti ? Hiç sorun değil hemen etkinliği düzenle</h1>
+  </div>
+
+
+
+  <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" style="margin-top: 27px;margin-left: 344px;"
+    role="document">
+    <div class="modal-content" style="width: 943px;
+    margin-left: -65px;">
+      <div class="modal-header">
+        <h4 class="modal-title" id="eventAddLabel">Yeni Etkinlik</h4>
+        <button type="button" class="close" data-dismiss="modal"><i
+            class="cutie icon-ios-close-circle cute-spin-1x"></i></button>
+      </div>
+      <div class="modal-body" id="eventAddBody">
+
+
+        <form id="add_event" action="/guncelle" method="post" class="needs-validation">
+
+          <!-- -->
+      </div>
+      <div class="form-row" id="itl">
+        <div class="form-group col-12">
+          <div class="form-group has-icon col">
+            <input type="text" class="form-control" name="yeni_etkinlikAdi" id="eventloca"
+              placeholder="Etkinlik Adını Düzenle" autocapitalize="words" autocomplete="off">
+          </div>
+          <div class="form-group has-icon col">
+            <input type="text" class="form-control" name="yeni_Lokasyon" id="eventloca" placeholder="Lokasyonu Düzenle"
+              autocapitalize="words" autocomplete="off">
+            <i class="fa fa-map-marker input-icon"></i>
+          </div>
+        </div>
+        <div class="control">
+
+          <div class="form-row justify-content-center" id="datepair">
+            <div class="form-group has-icon col col-sm">
+              <input type="date" class="form-control date start" id="start_date" name="yeni_baslangicTarihi"
+                required="">
+              <i class="fa fa-calendar input-icon"></i>
+            </div>
+            <div class="form-group has-icon col-sm time-group">
+              <input type="text" class="form-control time start ui-timepicker-input" name="yeni_baslangicSaati"
+                id="start_time" value="" placeholder="9:00am" autocomplete="off">
+              <i class="fa fa-clock input-icon"></i>
+            </div>
+            <span class="form-text px5 mb-3 mt-0 align-self-center">to</span>
+            <div class="form-group has-icon col-sm time-group">
+              <input type="text" class="form-control time end ui-timepicker-input" name="yeni_bitisSaati" id="end_time"
+                value="" placeholder="10:00am" autocomplete="off">
+              <i class="fa fa-clock input-icon"></i>
+            </div>
+            <div class="form-row">
+              <div class="form-group col has-icon">
+                <input type="date" class="form-control date end" id="end_date" name="yeni_bitisTarihi">
+                <i class="fa fa-calendar input-icon"></i>
+              </div>
+            </div>
+            <div class="form-group has-icon col col-sm">
+              <input type="url" class="form-control" name="eventurl" id="yeni_webSiteUrl" placeholder="URL">
+              <i class="fa fa-globe input-icon"></i>
+            </div>
+          </div>
+
+
+          <div class="form-group">
+            <h1>Açıklamayı Düzenle</h1>
+
+
+            <input type="text" name="yeni_aciklama" class="textarea">
+
+
+
+            <script src="https://www.dukelearntoprogram.com/course1/common/js/image/SimpleImage.js"></script>
+
+            <h1>Resmi Güncelle</h1>
+
+            <canvas id="can1">
+            </canvas>
+
+            <p>
+
+              <input type="file" multiple="false" accept="image/*" id="finput" onchange="Upload()">
+
+            </p>
+          </div>
+          <h3>Organizatör Adı
+          </h3>
+          <div class="control" style="   margin-left: 36px;margin-top: -5px;">
+            <input class="input is-hovered" name="yeni_organizatorAdi" type="text" placeholder="Organizatör Adı"><br>
+          </div>
+          <div class="wrapper">
+            <h1>Açıklama</h1>
+
+
+            <input type="text" name="Aciklamaİki" class="textarea">
+
+
+            <h3>Sosyal Medya Linkleri</h3>
+            <button type="button" class="btn btn-fb"><i class="fab fa-facebook-f"></i></button>
+            <div class="field">
+              <div class="control">
+                <input class="input is-small" name="yeni_facebookLink" type="text" placeholder="Facebook ">
+              </div>
+            </div>
+
+            <button type="button" class="btn btn-tw"><i class="fab fa-twitter"></i></button>
+            <div class="field">
+              <div class="control">
+                <input class="input is-small" name="yeni_twitterLink" type="text" placeholder="Twitter linkini paylaş">
+              </div>
+            </div>
+
+            <button type="button" class="btn btn-ins"><i class="fab fa-instagram"></i></button>
+            <div class="field">
+              <div class="control">
+                <input class="input is-small" name="yeni_instagramLink" type="text"
+                  placeholder="İnstagram linkini paylaş">
+              </div>
+            </div>
+            <hr>
+
+            <h3>Bilet Sistemi ve Konu</h3>
+            <input type="checkbox" id="ossm" name="ossm">
+            <label for="ossm">
+              <h2>Bilet Fiyatı Güncelleme</h2>
+              <div class="control">
+
+                <label>Ücret</label>
+                <input class="input" name="yeni_biletUcreti" type="text" placeholder="Ücret">
+
+              </div>
+              <div class="control">
+
+                <label>Bilet Adeti</label>
+                <input class="input" name="yeni_biletAdeti" type="text" placeholder="Bilet Adeti">
+
+              </div>
+              <br>
+              <a>NOT: ÜCRET KISMI BOŞ KALIRSA ÜCRETSİZ BİLET DEMEKTİR...</a>
+            </label>
+            <hr>
+            <h3>Ek Bilgi</h3>
+            <!-- <form action=""></form>  -->
+            <input type="radio" name="yeni_Public" value="1"> Herkese Açık: Bu etkinliği herkese açık olarak
+            listele<br>
+            <input type="radio" name="yeni_Public" value="0"> Gizli Sayfa: Bu etkinliği herkese açık olarak
+            listeleme<br>
+            <br>
+            <h3>Etkinlik Tipi</h3>
+            <div class="control">
+              <div class="select">
+                <select name="yeni_etkinlikTipi">
+                  <option>Etkinlik Tipi Seçiniz</option>
+                  <option value="Eğlence">Eğlence</option>
+                  <option value="Eğitim">Eğitim</option>
+                  <option value="Sanat">Sanat</option>
+                  <option value="Müzik">Müzik</option>
+                  <option value="Mutfak">Mutfak</option>
+                  <option value="Elektronik Cihazlar">Elektronik Cihazlar</option>
+                </select>
+              </div>
+            </div><br>
+            <h3>Etkinlik Konusu</h3>
+            <div class="control">
+              <div class="select">
+                <select name="yeni_etkinlikKonusu">
+                  <option>Etkinlik Konusu Seçiniz</option>
+                  <option value="Bilişim">Bilişim</option>
+                  <option value="Opera">Opera</option>
+                  <option value="Kültürel Gezi">Kültürel Gezi</option>
+                  <option value="Dünya Mutfağı">Dünya Mutfağı</option>
+                  <option value="Teknoloji">Teknoloji</option>
+                  <option value="Elektronik">Elektronik</option>
+
+                </select>
+              </div>
+              <div class="control">
+                <input type="text" name="guncellenecekEtkinlikId" placeholder="guncellenecekEtkinlikId"
+                  style="display: none;">
+              </div>
+              <div class="control">
+                <button type="submit" style="    width: 500px;
+                      margin-top: 25px;" class="button is-primary">Güncelle</button>
+              </div>
+            </div><br>
+
+          </div>
+        </div>
+
+        </label>
+        </form>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+  <footer class="footer" style="background-color: #204f91;">
+    <div class="footer-left col-md-4 col-sm-6">
+      <p class="about">
+        <span> Techno EVENT</span> İnsanları monoton yaşantıdan kurtaracak projemizle karşınızdayız,
+        her gün aynı toplantılardan her gün aynı ortamlardan bunalan insanlar için,
+        dünyanın her yerinde ki organizasyonlarda bulunabilirsiniz.
+        Eğitim,bilişim,sanayi ve sanat gibi bir çok dalda etkinliklere katılacaksınız.
+      </p>
+
+    </div>
+    <div class="footer-center col-md-4 col-sm-6">
+      <div>
+        <i class="fa fa-map-marker"></i>
+        <p><span>Üsküdar 5450</span> İstanbul</p>
+      </div>
+      <div>
+        <i class="fa fa-phone"></i>
+        <p> 0(216) 943 2323</p>
+      </div>
+      <div>
+        <i class="fa fa-envelope"></i>
+        <p><a href="#"> technoevent@gmail.com</a></p>
+      </div>
+    </div>
+    <div class="footer-right col-md-4 col-sm-6">
+      <img src="">
+      <p class="menu">
+        <a href="#"> Anasayfa</a> |
+        <a href="#"> Hakkımızda</a> |
+        <a href="#"> Sponsorlarımız</a> |
+        <a href="#"> Oturum Aç</a> |
+      </p>
+      <p class="name"> TechnoEvent &copy; 2019</p>
+    </div>
+  </footer>
+  <!--- FORM KISIMI BİTİŞ-->
+  <script>
+    function Upload() {
+      var cc1 = document.getElementById("can1");
+      var fileinput = document.getElementById("finput");
+      var image = new SimpleImage(fileinput);
+      image.drawTo(cc1);
+    }
+    editor.document.designMode = "On";
+    function transform(option, argument) {
+      editor.document.execCommand(option, false, argument);
+    }
+  </script>
+</body>
+
+
+</html>
