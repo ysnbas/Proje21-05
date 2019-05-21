@@ -42,6 +42,6 @@ app.post('/sifremiunuttum', login.usersifreunutmak);
 
 app.get('/profil', login.userprofil);
 
-app.get('/KullaniciGiris', login.userAnasayfaLogin)
+//app.get('/KullaniciGiris', login.userAnasayfaLogin)
 
 app.listen(port, () => console.log(`Port Çalışıyor :  ${port}!`));

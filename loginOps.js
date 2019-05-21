@@ -118,35 +118,6 @@ module.exports.userOturumAc = function (req, res) {
   });
 };
 
-/*module.exports.userGiris = function (req, res) {
-  sql.connect(webconfig, function (err) {
-    if (err) console.log(err);
-    var request1 = new sql.Request();
-    request1.query("select dbo.fn_UyeVarmi('" + req.body.ad + "','" + req.body.sifre + "') as Sonuc", function (err, verisonucu) {
-      if (err) {
-        console.log(err);
-      }
-      verisonucu.recordset.forEach(function (kullanici) {
-        if (kullanici.Sonuc == "Evet") {
-          request1.query("select * from tbl_Uye where Id = (select Id from tbl_Uye where KullanıcıAdi = 'Depo')", function (err, verisonucu) {
-            if (err) {
-              console.log(err);
-            }
-            res.render('KullaniciGiris', { veri: verisonucu.recordset });
-          })
-        }
-        else {
-          res.render('Login', { hata: 'Kullanıcı adı veya sifre hatalı' });
-
-        }
-        sql.close();
-
-      });
-    });
-
-
-  });
-};*/
 module.exports.userGiris = function (req, res) {
   sql.connect(webconfig, function (err) {
     if (err) console.log(err);
@@ -156,14 +127,36 @@ module.exports.userGiris = function (req, res) {
         console.log(err);
       }
       verisonucu.recordset.forEach(function (kullanici) {
+        request1.query("select * from tbl_Uye where Id = (select Id from tbl_Uye where KullanıcıAdi = 'Depo')", function (err, data) {
+          if (kullanici.Sonuc == "Evet") {
+            res.render('KullaniciGiris', { veri: data.recordset });
+          }
+
+
+          else {
+            res.render('Login', { hata: 'Kullanıcı adı veya sifre hatalı' });
+
+          }
+          sql.close();
+        })
+      });
+    });
+
+
+  });
+};
+/*module.exports.userGiris = function (req, res) {
+  sql.connect(webconfig, function (err) {
+    if (err) console.log(err);
+    var request1 = new sql.Request();
+    request1.query("select dbo.fn_UyeVarmi('" + req.body.ad + "','" + req.body.sifre + "') as Sonuc", function (err, verisonucu) {
+      if (err) {
+        console.log(err);
+      }
+      sql.close();
+      verisonucu.recordset.forEach(function (kullanici) {
         if (kullanici.Sonuc == "Evet") {
 
-          request1.query("select * from tbl_Uye where Id = (select Id from tbl_Uye where KullanıcıAdi = 'Depo')", function (err, verisonucu) {
-            if (err) {
-              console.log(err);
-            }
-            res.render('KullaniciGiris', { veri: verisonucu.recordset });
-          })
         }
         else {
           res.render('Login', { hata: 'Kullanıcı adı veya sifre hatalı' });
@@ -174,7 +167,7 @@ module.exports.userGiris = function (req, res) {
       });
     });
   });
-}
+}*/
 module.exports.SifreOncesi = function (req, res) {
   res.render('unutmaoncesi', { varmı: '' });
 }
