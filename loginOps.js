@@ -118,6 +118,7 @@ module.exports.userOturumAc = function (req, res) {
   });
 };
 
+
 module.exports.userGiris = function (req, res) {
   sql.connect(webconfig, function (err) {
     if (err) console.log(err);
@@ -127,24 +128,28 @@ module.exports.userGiris = function (req, res) {
         console.log(err);
       }
       verisonucu.recordset.forEach(function (kullanici) {
-        request1.query("select * from tbl_Uye where Id = (select Id from tbl_Uye where KullanıcıAdi = 'Depo')", function (err, data) {
-          if (kullanici.Sonuc == "Evet") {
+        if (kullanici.Sonuc == "Evet") {
+          request1.query("select * from tbl_Uye where KullanıcıAdi='" + req.body.ad + "'", function (err, data) {
+            if (err) {
+              console.log(err);
+            }
+
+            sql.close();
             res.render('KullaniciGiris', { veri: data.recordset });
-          }
+
+          });
 
 
-          else {
-            res.render('Login', { hata: 'Kullanıcı adı veya sifre hatalı' });
-
-          }
+        }
+        else {
+          res.render('Login', { hata: 'Kullanıcı adı veya sifre hatalı' });
           sql.close();
-        })
+        }
       });
     });
-
-
   });
-};
+}
+
 /*module.exports.userGiris = function (req, res) {
   sql.connect(webconfig, function (err) {
     if (err) console.log(err);
