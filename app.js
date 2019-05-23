@@ -13,16 +13,17 @@ app.use('/javascript', express.static(path.join(__dirname, 'javascript')));
 app.set('view engine', 'ejs');
 app.use(bp.urlencoded({ extended: false }));
 app.get('/', (req, res) => res.send('Hello World!'));
-app.get('/etkinlikolustur', login.userLogin);
+app.get('/etkinlikolustur/:ad', login.userLogin);
 app.get('/guncelle', login.userGuncelle);
 
 app.post('/guncelle', login.Guncelle);
 
-app.post('/etkinlikolustur', login.userLogin);
+app.post('/etkinlikolustur/:Id', login.userLogin);
 app.get('/gozat', login.userGozAt);
 app.get('/etkinlikleregozat', login.userGozAt);
 
-app.get('/etkinlikbilgileri', login.userEtkinlikBilgileri);
+app.get('/etkinlikbilgileri/:ad', login.userEtkinlikBilgileri);
+
 
 app.get('/Login', login.Giris);
 app.post('/Login', login.userGiris);
@@ -42,6 +43,5 @@ app.post('/sifremiunuttum', login.usersifreunutmak);
 
 app.get('/profil', login.userprofil);
 
-//app.get('/KullaniciGiris', login.userAnasayfaLogin)
 
 app.listen(port, () => console.log(`Port Çalışıyor :  ${port}!`));

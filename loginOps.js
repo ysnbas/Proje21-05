@@ -82,12 +82,13 @@ module.exports.userLogin = function (req, res) {
   sql.connect(webconfig, function (err) {
     if (err) console.log(err);
     var request1 = new sql.Request();
-    request1.query("INSERT INTO tbl_EtkinlikOlustur(EtkinlikAdi,Lokasyon,BaslangıcTarih,BitisTarihi,BaslangicSaati,BitisSaati,WebSiteUrl,AciklamaBir,ResimYukle,OrganizatörAdi,Aciklamaİki,FacebookLink,TwitterLink,İnstagramLink,BiletAdi,BiletUcret,BiletAdet,EkBilgi,EtkinlikTipi,EtkinlikKonusu,EtkinlikId) VALUES('" + req.body.EtkinlikAdi + "','" + req.body.location + "','" + req.body.start_date + "','" + req.body.end_date + "','" + req.body.start_time + "','" + req.body.end_time + "','" + req.body.eventurl + "','" + req.body.AciklamaBir + "','" + req.body.İmageUpload + "','" + req.body.OrganizatorName + "','" + req.body.Aciklamaİki + "','" + req.body.Facebook + "','" + req.body.twitter + "','" + req.body.İnstagram + "','" + req.body.biletadi + "','" + req.body.ucret + "','" + req.body.adetsayisi + "','" + req.body.gender + "','" + req.body.Tip + "','" + req.body.Konu + "','" + req.body.uyeid + "')", function (err, data) {
+    request1.query("INSERT INTO tbl_EtkinlikOlustur(EtkinlikAdi,Lokasyon,BaslangıcTarih,BitisTarihi,BaslangicSaati,BitisSaati,WebSiteUrl,AciklamaBir,ResimYukle,OrganizatörAdi,Aciklamaİki,FacebookLink,TwitterLink,İnstagramLink,BiletAdi,BiletUcret,BiletAdet,EkBilgi,EtkinlikTipi,EtkinlikKonusu,EtkinlikId) VALUES('" + req.body.EtkinlikAdi + "','" + req.body.location + "','" + req.body.start_date + "','" + req.body.end_date + "','" + req.body.start_time + "','" + req.body.end_time + "','" + req.body.eventurl + "','" + req.body.AciklamaBir + "','" + req.body.İmageUpload + "','" + req.body.OrganizatorName + "','" + req.body.Aciklamaİki + "','" + req.body.Facebook + "','" + req.body.twitter + "','" + req.body.İnstagram + "','" + req.body.biletadi + "','" + req.body.ucret + "','" + req.body.adetsayisi + "','" + req.body.gender + "','" + req.body.Tip + "','" + req.body.Konu + "','" + /*urlde yazan Id buraya gelecek*/ + "')", function (err, data) {
       if (err) {
         console.log(err);
       }
       sql.close();
       res.render('etkinlikolustur');
+
     });
   });
 };
@@ -100,6 +101,8 @@ module.exports.UyeOl = function (req, res) {
 module.exports.Giris = function (req, res) {
 
   res.render('Login', { hata: '' });
+
+
 }
 
 module.exports.userOturumAc = function (req, res) {
@@ -110,10 +113,7 @@ module.exports.userOturumAc = function (req, res) {
       if (err) {
         console.log(err);
       }
-
       sql.close();
-
-
     });
   });
 };
@@ -129,6 +129,7 @@ module.exports.userGiris = function (req, res) {
       }
       verisonucu.recordset.forEach(function (kullanici) {
         if (kullanici.Sonuc == "Evet") {
+
           request1.query("select * from tbl_Uye where KullanıcıAdi='" + req.body.ad + "'", function (err, data) {
             if (err) {
               console.log(err);
@@ -138,7 +139,6 @@ module.exports.userGiris = function (req, res) {
             res.render('KullaniciGiris', { veri: data.recordset });
 
           });
-
 
         }
         else {
@@ -234,15 +234,19 @@ module.exports.userEtkinlikBilgileri = function (req, res) {
   sql.connect(webconfig, function (err) {
     if (err) console.log(err);
     var request1 = new sql.Request();
-    request1.query('select * from tbl_EtkinlikOlustur,tbl_Uye WHERE tbl_EtkinlikOlustur.EtkinlikId=tbl_Uye.Id ', function (err, verisonucu) {
+    request1.query("select * from tbl_EtkinlikOlustur where EtkinlikId = (select Id from tbl_Uye where KullanıcıAdi = '" + req.params.ad + "' )", function (err, data) {
       if (err) {
         console.log(err);
       }
       sql.close();
-      res.render('etkinlikbilgileri', { veri: verisonucu.recordset });
+      res.render('EtkinlikBilgileri', { veri: data.recordset })
     });
   });
+
 };
+
+
+
 module.exports.userprofil = function (req, res) {
   sql.connect(webconfig, function (err) {
     if (err) console.log(err);
@@ -253,20 +257,6 @@ module.exports.userprofil = function (req, res) {
       }
       sql.close();
       res.render('profil', { veri: verisonucu.recordset });
-    })
-  });
-};
-module.exports.userAnasayfaLogin = function (req, res) {
-  sql.connect(webconfig, function (err) {
-    if (err) console.log(err);
-    var request1 = new sql.Request();
-    request1.query("select * from tbl_Uye where Id = (select Id from tbl_Uye where KullanıcıAdi = 'Depo')", function (err, verisonucu) {
-      if (err) {
-        console.log(err);
-      }
-      sql.close();
-      res.render('KullaniciGiris', { veri: verisonucu.recordset });
-
     })
   });
 };
