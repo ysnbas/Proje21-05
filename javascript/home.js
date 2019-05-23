@@ -13,3 +13,5 @@ function navbarLinkClick() {
     navbarToggler.click();
   }
 }
+
+

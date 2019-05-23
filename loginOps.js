@@ -3,7 +3,7 @@ const sql = require('mssql');
 var webconfig = {
   user: 'Depo  ',
   password: 'ysnbas',
-  server: '10.201.175.169',
+  server: '192.168.0.26',
   database: 'Proje'
 };
 
@@ -82,7 +82,7 @@ module.exports.userLogin = function (req, res) {
   sql.connect(webconfig, function (err) {
     if (err) console.log(err);
     var request1 = new sql.Request();
-    request1.query("INSERT INTO tbl_EtkinlikOlustur(EtkinlikAdi,Lokasyon,BaslangıcTarih,BitisTarihi,BaslangicSaati,BitisSaati,WebSiteUrl,AciklamaBir,ResimYukle,OrganizatörAdi,Aciklamaİki,FacebookLink,TwitterLink,İnstagramLink,BiletAdi,BiletUcret,BiletAdet,EkBilgi,EtkinlikTipi,EtkinlikKonusu,EtkinlikId) VALUES('" + req.body.EtkinlikAdi + "','" + req.body.location + "','" + req.body.start_date + "','" + req.body.end_date + "','" + req.body.start_time + "','" + req.body.end_time + "','" + req.body.eventurl + "','" + req.body.AciklamaBir + "','" + req.body.İmageUpload + "','" + req.body.OrganizatorName + "','" + req.body.Aciklamaİki + "','" + req.body.Facebook + "','" + req.body.twitter + "','" + req.body.İnstagram + "','" + req.body.biletadi + "','" + req.body.ucret + "','" + req.body.adetsayisi + "','" + req.body.gender + "','" + req.body.Tip + "','" + req.body.Konu + "','" + /*urlde yazan Id buraya gelecek*/ + "')", function (err, data) {
+    request1.query("INSERT INTO tbl_EtkinlikOlustur(EtkinlikAdi,Lokasyon,BaslangıcTarih,BitisTarihi,BaslangicSaati,BitisSaati,WebSiteUrl,AciklamaBir,ResimYukle,OrganizatörAdi,Aciklamaİki,FacebookLink,TwitterLink,İnstagramLink,BiletAdi,BiletUcret,BiletAdet,EkBilgi,EtkinlikTipi,EtkinlikKonusu) VALUES('" + req.body.EtkinlikAdi + "','" + req.body.location + "','" + req.body.start_date + "','" + req.body.end_date + "','" + req.body.start_time + "','" + req.body.end_time + "','" + req.body.eventurl + "','" + req.body.AciklamaBir + "','" + req.body.İmageUpload + "','" + req.body.OrganizatorName + "','" + req.body.Aciklamaİki + "','" + req.body.Facebook + "','" + req.body.twitter + "','" + req.body.İnstagram + "','" + req.body.biletadi + "','" + req.body.ucret + "','" + req.body.adetsayisi + "','" + req.body.gender + "','" + req.body.Tip + "','" + req.body.Konu + "')", function (err, data) {
       if (err) {
         console.log(err);
       }
@@ -92,16 +92,15 @@ module.exports.userLogin = function (req, res) {
     });
   });
 };
-
+//RequestError: Conversion failed when converting the varchar value 'undefined' to data type int.
 
 // OTURUM AÇ
 module.exports.UyeOl = function (req, res) {
-  res.render('oturumac');
+  res.render('oturumac', { hata: '' });
 }
 module.exports.Giris = function (req, res) {
 
   res.render('Login', { hata: '' });
-
 
 }
 
@@ -109,12 +108,27 @@ module.exports.userOturumAc = function (req, res) {
   sql.connect(webconfig, function (err) {
     if (err) console.log(err);
     var request1 = new sql.Request();
-    request1.query("INSERT INTO tbl_Uye(KullanıcıAdi,Adi,Soyadi,Email,Sifre)  VALUES('" + req.body.kullanici_Adi + "','" + req.body.uye_Adi + "','" + req.body.uye_Soyadi + "','" + req.body.uye_EMail + "','" + req.body.uye_Sifre + "')", function (err, data) {
+    request1.query("select  dbo.fn_kullanicikontrol('" + req.body.kullanici_Adi + "') as varmi", function (err, control) {
       if (err) {
         console.log(err);
       }
-      sql.close();
-    });
+      control.recordset.forEach(function (kullanici) {
+        if (kullanici.varmi == "Evet") {
+          res.render('oturumac', { hata: 'Kullanıcı adı bulunmaktadır ' });
+          sql.close();
+        }
+        else {
+          request1.query("INSERT INTO tbl_Uye(KullanıcıAdi,Adi,Soyadi,Email,Sifre)  VALUES('" + req.body.kullanici_Adi + "','" + req.body.uye_Adi + "','" + req.body.uye_Soyadi + "','" + req.body.uye_EMail + "','" + req.body.uye_Sifre + "')", function (err, data) {
+            if (err) {
+              console.log(err);
+            }
+            res.render('Login', { hata: '' });
+            sql.close();
+          });
+        }
+      })
+
+    })
   });
 };
 
@@ -244,7 +258,6 @@ module.exports.userEtkinlikBilgileri = function (req, res) {
   });
 
 };
-
 
 
 module.exports.userprofil = function (req, res) {
