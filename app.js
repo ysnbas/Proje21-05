@@ -3,6 +3,9 @@ const express = require('express');
 const bp = require('body-parser');
 const path = require('path');
 const app = express();
+var app = multer();
+const multer = require('multer');
+
 const port = 3000;
 const login = require('./loginOps');
 
