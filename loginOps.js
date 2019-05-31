@@ -6,18 +6,20 @@ var webconfig = {
   server: '192.168.0.26',
   database: 'Proje'
 };
-
 module.exports.userGuncelle = function (req, res) {
   sql.connect(webconfig, function (err) {
     if (err) console.log(err);
     var request1 = new sql.Request();
-    request1.query('', function (err, verisonucu) {
+    request1.query("", function (err, verisonucu) {
       if (err) {
         console.log(err);
       }
-      console.log(verisonucu.recordsets);
+      console.log(verisonucu.recordset);
       sql.close();
-      res.render('home', { veri: verisonucu.recordsets });
+      res.render('etkinlikguncelle', {
+        userid: req.params.id
+
+      });
     });
   });
 };
@@ -26,7 +28,7 @@ module.exports.Guncelle = function (req, res) {
   sql.connect(webconfig, function (err) {
     if (err) console.log(err);
     var request1 = new sql.Request();
-    // req bodyleri düzenle !
+
     request1.query( // ETKİNLİK GÜNCELLE
       `
         UPDATE tbl_EtkinlikOlustur set 
@@ -36,7 +38,7 @@ module.exports.Guncelle = function (req, res) {
         BaslangicSaati = '${req.body.yeni_baslangicSaati}',
         BitisSaati = '${req.body.yeni_bitisSaati}',
         BitisTarihi = '${req.body.yeni_bitisTarihi}',
-        WebSiteUrl = '${req.body.yeni_webSiteUrl}',
+        WebSiteUrl = '${req.body.eventurl}',
         AciklamaBir = '${req.body.yeni_aciklama}',
         ResimYukle = '${req.body.yeni_resimYukle}',
         OrganizatörAdi = '${req.body.yeni_organizatorAdi}',
@@ -47,15 +49,15 @@ module.exports.Guncelle = function (req, res) {
         BiletAdet = '${req.body.yeni_biletAdeti}',
         EkBilgi = '${req.body.yeni_biletAdeti}',
         EtkinlikTipi = '${req.body.yeni_etkinlikTipi}',
-        EtkinlikKonusu = '${req.body.yeni_etkinlikKonusu}',
-        PublicOrRepublic = '${req.body.yeni_Public}'
+        EtkinlikKonusu = '${req.body.yeni_etkinlikKonusu}'
         WHERE id = '${req.body.guncellenecekEtkinlikId}'
         `,
       function (err, dataresult) {
         if (err) {
           console.log(err);
+
         } else {
-          res.send("güncelleme başarılı");
+          res.send('gitti');
         }
         sql.close();
       }
@@ -82,18 +84,58 @@ module.exports.userLogin = function (req, res) {
   sql.connect(webconfig, function (err) {
     if (err) console.log(err);
     var request1 = new sql.Request();
-    request1.query("INSERT INTO tbl_EtkinlikOlustur(EtkinlikAdi,Lokasyon,BaslangıcTarih,BitisTarihi,BaslangicSaati,BitisSaati,WebSiteUrl,AciklamaBir,ResimYukle,OrganizatörAdi,Aciklamaİki,FacebookLink,TwitterLink,İnstagramLink,BiletAdi,BiletUcret,BiletAdet,EkBilgi,EtkinlikTipi,EtkinlikKonusu) VALUES('" + req.body.EtkinlikAdi + "','" + req.body.location + "','" + req.body.start_date + "','" + req.body.end_date + "','" + req.body.start_time + "','" + req.body.end_time + "','" + req.body.eventurl + "','" + req.body.AciklamaBir + "','" + req.body.İmageUpload + "','" + req.body.OrganizatorName + "','" + req.body.Aciklamaİki + "','" + req.body.Facebook + "','" + req.body.twitter + "','" + req.body.İnstagram + "','" + req.body.biletadi + "','" + req.body.ucret + "','" + req.body.adetsayisi + "','" + req.body.gender + "','" + req.body.Tip + "','" + req.body.Konu + "')", function (err, data) {
-      if (err) {
-        console.log(err);
+    request1.query(
+      "INSERT INTO tbl_EtkinlikOlustur(EtkinlikAdi,Lokasyon,BaslangıcTarih,BitisTarihi,BaslangicSaati,BitisSaati,WebSiteUrl,AciklamaBir,ResimYukle,OrganizatörAdi,Aciklamaİki,FacebookLink,TwitterLink,İnstagramLink,BiletAdi,BiletUcret,BiletAdet,EkBilgi,EtkinlikTipi,EtkinlikKonusu,EtkinlikId) VALUES('" +
+      req.body.EtkinlikAdi +
+      "','" +
+      req.body.location +
+      "','" +
+      req.body.start_date +
+      "','" +
+      req.body.end_date +
+      "','" +
+      req.body.start_time +
+      "','" +
+      req.body.end_time +
+      "','" +
+      req.body.eventurl +
+      "','" +
+      req.body.AciklamaBir +
+      "',CAST( '" +
+      req.file.buffer.toString('base64') +
+      "'  AS VARBINARY(MAX)) ,'" +
+      req.body.OrganizatorName +
+      "','" +
+      req.body.Aciklamaİki +
+      "','" +
+      req.body.Facebook +
+      "','" +
+      req.body.twitter +
+      "','" +
+      req.body.İnstagram +
+      "','" +
+      req.body.biletadi +
+      "','" +
+      req.body.ucret +
+      "','" +
+      req.body.adetsayisi +
+      "','" +
+      req.body.gender +
+      "','" +
+      req.body.Tip +
+      "','" +
+      req.body.Konu +
+      "',(select Id from tbl_Uye where KullanıcıAdi='" + req.session.ad + "'))",
+      function (err, data) {
+        if (err) {
+          console.log(err);
+        }
+        sql.close();
+        res.render('etkinlikolustur');
       }
-      sql.close();
-      res.render('etkinlikolustur');
-
-    });
+    );
   });
 };
-//RequestError: Conversion failed when converting the varchar value 'undefined' to data type int.
-
 // OTURUM AÇ
 module.exports.UyeOl = function (req, res) {
   res.render('oturumac', { hata: '' });
@@ -145,6 +187,7 @@ module.exports.userGiris = function (req, res) {
         if (kullanici.Sonuc == "Evet") {
 
           request1.query("select * from tbl_Uye where KullanıcıAdi='" + req.body.ad + "'", function (err, data) {
+            req.session.ad = req.body.ad;
             if (err) {
               console.log(err);
             }
@@ -228,38 +271,20 @@ module.exports.usersifreunutmak = function (req, res) {
 };
 
 
-module.exports.userYonet = function (req, res) {
-  // sql.close();
-  sql.connect(webconfig, function (err) {
-    if (err) console.log(err);
-    var request1 = new sql.Request();
-    request1.query("select * from tbl_EtkinlikOlustur", function (err, verisonucu) {
-      if (err) {
-        console.log(err);
-      }
-      console.log(verisonucu.recordset);
-      sql.close();
-      res.render('EtkinlikYonet', { data: verisonucu.recordset });
-    });
-  });
-};
 module.exports.userEtkinlikBilgileri = function (req, res) {
   // sql.close(); // ETKİNLİK BİLGİLERİ
   sql.connect(webconfig, function (err) {
     if (err) console.log(err);
     var request1 = new sql.Request();
-    request1.query("select * from tbl_EtkinlikOlustur where EtkinlikId = (select Id from tbl_Uye where KullanıcıAdi = '" + req.params.ad + "' )", function (err, data) {
+    request1.query('select * from tbl_EtkinlikOlustur where id = ' + req.params.id, function (err, data) {
       if (err) {
         console.log(err);
       }
       sql.close();
-      res.render('EtkinlikBilgileri', { veri: data.recordset })
+      res.render('EtkinlikBilgileri', { veri: data.recordset });
     });
   });
-
 };
-
-
 module.exports.userprofil = function (req, res) {
   sql.connect(webconfig, function (err) {
     if (err) console.log(err);
@@ -273,3 +298,195 @@ module.exports.userprofil = function (req, res) {
     })
   });
 };
+module.exports.userKonusmaciBilgileri = function (req, res) {
+  // sql.close(); // KONUŞMACI BİLGİLERİ
+  sql.connect(webconfig, function (err) {
+    if (err) console.log(err);
+    var request1 = new sql.Request();
+    request1.query('select * from tbl_EtkinlikOlustur where id = ' + req.params.id, function (err, verisonucu) {
+      if (err) {
+        console.log(err);
+      }
+      sql.close();
+      res.render('konusmacibilgileri', { veri: verisonucu.recordset });
+    });
+  });
+};
+
+module.exports.sil = function (req, res) {
+  sql.connect(webconfig, function (err) {
+    if (err) console.log(err);
+    var request1 = new sql.Request();
+    // console.log(req.body);
+    console.log(req.body.delete);
+    request1.query("delete from  tbl_EtkinlikOlustur where id= " + req.body.delete, function (err, verisonucu) {
+      if (err) {
+        console.log(err);
+      }
+      sql.close();
+      res.redirect('/EtkinlikYonet');
+    });
+  });
+}
+
+module.exports.userYonet = function (req, res) {
+  // sql.close();
+  sql.connect(webconfig, function (err) {
+    if (err) console.log(err);
+    var request1 = new sql.Request();
+    request1.query('select * from tbl_EtkinlikOlustur where EtkinlikId =' + req.params.Id, function (err, verisonucu) {
+      if (err) {
+        console.log(err);
+      }
+      sql.close();
+      res.render('EtkinlikYonet', { data: verisonucu.recordset });
+    });
+  });
+};
+
+
+module.exports.kitap = function (req, res) {
+  // Sanat kategorisi
+  sql.connect(webconfig, function (err) {
+    if (err) console.log(err);
+    var request1 = new sql.Request();
+    request1.query("select * from tbl_EtkinlikOlustur where EtkinlikTipi = 'Kitap' ", function (err, verisonucu) {
+      if (err) {
+        console.log(err);
+      }
+      sql.close();
+      res.render('kitap', { veri: verisonucu.recordset });
+    });
+  });
+};
+
+module.exports.muzik = function (req, res) {
+  // Müzik kategorisi
+  sql.connect(webconfig, function (err) {
+    if (err) console.log(err);
+    var request1 = new sql.Request();
+    request1.query("select * from tbl_EtkinlikOlustur where EtkinlikTipi = 'Müzik' ", function (err, verisonucu) {
+      if (err) {
+        console.log(err);
+      }
+      sql.close();
+      res.render('muzik', { veri: verisonucu.recordset });
+    });
+  });
+};
+
+module.exports.sinema = function (req, res) {
+  // Sinema kategorisi
+  sql.connect(webconfig, function (err) {
+    if (err) console.log(err);
+    var request1 = new sql.Request();
+    request1.query("select * from tbl_EtkinlikOlustur where EtkinlikTipi = 'Sinema' ", function (err, verisonucu) {
+      if (err) {
+        console.log(err);
+      }
+      sql.close();
+      res.render('sinema', { veri: verisonucu.recordset });
+    });
+  });
+};
+
+module.exports.sanat = function (req, res) {
+  // Sanat kategorisi
+  sql.connect(webconfig, function (err) {
+    if (err) console.log(err);
+    var request1 = new sql.Request();
+    request1.query("select * from tbl_EtkinlikOlustur where EtkinlikTipi = 'Sanat' ", function (err, verisonucu) {
+      if (err) {
+        console.log(err);
+      }
+      sql.close();
+      res.render('sanat', { veri: verisonucu.recordset });
+    });
+  });
+};
+
+module.exports.meeting = function (req, res) {
+  // Meeting kategorisi
+  sql.connect(webconfig, function (err) {
+    if (err) console.log(err);
+    var request1 = new sql.Request();
+    request1.query("select * from tbl_EtkinlikOlustur where EtkinlikTipi = 'Meeting' ", function (err, verisonucu) {
+      if (err) {
+        console.log(err);
+      }
+      sql.close();
+      res.render('Meeting', { veri: verisonucu.recordset });
+    });
+  });
+};
+module.exports.fuar = function (req, res) {
+  // Fuar kategorisi
+  sql.connect(webconfig, function (err) {
+    if (err) console.log(err);
+    var request1 = new sql.Request();
+    request1.query("select * from tbl_EtkinlikOlustur where EtkinlikTipi = 'Fuar' ", function (err, verisonucu) {
+      if (err) {
+        console.log(err);
+      }
+      sql.close();
+      res.render('fuar', { veri: verisonucu.recordset });
+    });
+  });
+};
+
+module.exports.spor = function (req, res) {
+  // Spor kategorisi
+  sql.connect(webconfig, function (err) {
+    if (err) console.log(err);
+    var request1 = new sql.Request();
+    request1.query("select * from tbl_EtkinlikOlustur where EtkinlikTipi = 'Spor' ", function (err, verisonucu) {
+      if (err) {
+        console.log(err);
+      }
+      sql.close();
+      res.render('spor', { veri: verisonucu.recordset });
+    });
+  });
+};
+
+module.exports.fuar = function (req, res) {
+  // Fotoğrafçılık kategorisi
+  sql.connect(webconfig, function (err) {
+    if (err) console.log(err);
+    var request1 = new sql.Request();
+    request1.query("select * from tbl_EtkinlikOlustur where EtkinlikTipi = 'Fotoğrafçılık' ", function (err, verisonucu) {
+      if (err) {
+        console.log(err);
+      }
+      sql.close();
+      res.render('fotografcilik', { veri: verisonucu.recordset });
+    });
+  });
+};
+module.exports.fuar = function (req, res) {
+  // Müze kategorisi
+  sql.connect(webconfig, function (err) {
+    if (err) console.log(err);
+    var request1 = new sql.Request();
+    request1.query("select * from tbl_EtkinlikOlustur where EtkinlikTipi = 'Müze' ", function (err, verisonucu) {
+      if (err) {
+        console.log(err);
+      }
+      sql.close();
+      res.render('muze', { veri: verisonucu.recordset });
+    });
+  });
+};
+module.exports.Onizleme = function (req, res) {
+  sql.connect(webconfig, function (err) {
+    if (err) console.log(err);
+    var request1 = new sql.Request();
+    request1.query('select * from tbl_EtkinlikOlustur', function (err, verisonucu) {
+      if (err) {
+        console.log(err)
+      }
+      sql.close();
+      res.render('onizleme', { data: verisonucu.recordset })
+    });
+  });
+}

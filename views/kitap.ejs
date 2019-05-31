@@ -1,31 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Etkinlik</title>
-  <link rel="stylesheet" href="/css/etkinlikyonet.css">
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-  <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-win8.css">
+  <title>Artist</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css" />
+  <link rel="stylesheet" type="text/css" href="/css/app.css" />
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
   <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
   <script type="text/javascript" src="/javascript/home.js"></script>
-  <style>
-    .modalim {
-      border: 1px solid #e0e0e0;
-      border-radius: 10px;
-      display: none;
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      box-shadow: 0 0 0 3000px rgba(0, 0, 0, 0.4);
-    }
-  </style>
 </head>
+
+</html>
 
 <body>
   <!-- NAVBAR BAŞLANGIÇ-->
@@ -39,65 +27,79 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item ">
-          <a class="nav-link" style="color:white;" href="#">Anasayfa <span class="sr-only">(current)</span></a>
+          <a class="nav-link" style="    position: absolute;
+          margin-left: -120px;
+          margin-top: 0px; color: white;" href="Anasayfa">Anasayfa <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link " style="color:white;" href="#">Etkinlik Oluştur</a>
+          <a class="nav-link " style="color:white;" href="etkinlikolustur">Etkinlik Oluştur</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " style="color:white;" href="etkinlikleregozat">Etkinliklere Göz At</a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link " style="color:white;" href="#">Oturum Aç</a>
+          <a class="nav-link " style="color:white;" href="oturumac">Oturum Aç</a>
         </li>
       </ul>
       <form class="form-inline my-2 my-lg-0">
         <input class="form-control mr-sm-2" type="search" placeholder="Ara" aria-label="Search" />
         <button class="btn btn-outline-light my-2 my-sm-0" style="    width: 80px;
-          height: 35px;" type="submit">Ara</button>
+        height: 35px;" type="submit">
+          Ara
+        </button>
       </form>
     </div>
   </nav>
-  <!--NAVBAR BİTİŞ-->
-  <div class="container">
-
-    <h1>Etkinliklerimi Yönet</h1>
-
-    <div class="w3-panel w3-pale-blue w3-leftbar w3-rightbar w3-border-blue">
-      <p>Eklediğiniz etkinliklerle ilgili bütün bilgileri bu sayfadan takip edebilirsiniz. Etkinlikleri düzenlemek,
-        önizlemek veya yönetmek isterseniz ilgili etkinliğin karşısındaki ikona tıklamanız yeterli.
-      </p>
-    </div>
-    <% data.forEach(function(yonet){ %>
-    <form method="POST" action="/EtkinlikYonet">
+  <script src="https://apis.google.com/js/platform.js"></script>
 
 
-      <div>
-        <div class="w3-panel w3-win8-blue">
-          <h2>Gelecek Etkinlikler</h2>
-        </div>
-        <div class="EtkinlikAdi">
-          Etkinlik Adı
-        </div>
 
 
-        <div class="Etkinlikİkonlar">
-          <%= yonet.EtkinlikAdi %> <br>
-          <strong>Tarih:</strong><%= yonet.BaslangıcTarih%><%= yonet.BitisTarihi %>
-          <div class="ikons">
+  <!-- CONTENT CARDS -->
+  <!-- CONTENT CARDS -->
+  <!-- CONTENT CARDS -->
 
-            <a href="http://localhost:3000/etkinlikguncelle/<%= yonet.id %>"><i class="fas fa-edit"></i></a>
-            <input name="delete" value="<%=yonet.id%>">
-            <button class="button is-danger EtkinlikYonet" type="submit">Sil</button>
+  <div class="container" style="    margin: 0;">
+    <div class="row" style="    margin-top: 63px;">
+      <% veri.forEach(function(İmgAc){ %>
 
-            <a><i class=" fas fa-eye"></i></a>
+      <div class="card-wrapper col-lg-4 col-md-6 col-xs-12">
+        <div class="card">
+          <div class="card-img-wrapper">
+            <img class="card-img-top" src="data:image/jpg;base64,<%= İmgAc.ResimYukle %>" alt="Card image cap">
+            <!-- RESİMDE VERİTABNINDAN GELİCEK-->
+
           </div>
-        </div>
-      </div>
+          <div class="card-body">
+            <h5 class="card-title"><%= İmgAc.EtkinlikAdi %></h5>
+            <div class="card-content">
+              <p class="card-text">
+                <!-- BURAYA VERİTABANINDAN AÇIKLAMA GELCEK--><%= İmgAc.AciklamaBir %>
+              </p>
 
-    </form>
-    <% }); %>
+              <a href="etkinlikbilgileri/<%=İmgAc.id%>" class="btn btn-primary">Etkinlik Bilgileri</a>
+              <a href="konusmacibilgileri/<%=İmgAc.id%>" class="btn btn-primary">Konuşmacı Bilgileri </a>
+            </div>
+          </div>
+
+        </div><br><br>
+
+      </div>
+      <% }); %>
+
+
+    </div>
   </div>
 
-  <footer class="footer" style="background-color: #204f91;">
+  <footer class="footer" style="background-color: #2b5ca2;
+    width: 214%;
+  text-align: left;
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+  margin-top: 104px;
+  margin-left: -398px;">
     <div class="footer-left col-md-4 col-sm-6">
       <p class="about">
         <span> Techno EVENT</span> İnsanları monoton yaşantıdan kurtaracak projemizle karşınızdayız,
@@ -133,9 +135,4 @@
     </div>
   </footer>
 
-
-
-
 </body>
-
-</html>

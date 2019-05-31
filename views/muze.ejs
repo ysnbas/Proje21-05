@@ -1,0 +1,159 @@
+
+    
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Artist</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css" />
+    <link rel="stylesheet" type="text/css" href="/css/app.css" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <script type="text/javascript" src="/javascript/home.js"></script>
+  </head>
+</html>
+<body>
+  <!-- NAVBAR BAŞLANGIÇ-->
+  <nav class="navbar navbar-expand-lg navbar-light #2b5ca2">
+    <a class="navbar-brand" href="#">TechnoEvent</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item ">
+          <a class="nav-link" style="    position: absolute;
+          margin-left: -120px;
+          margin-top: 0px; color: white;" href="Anasayfa">Anasayfa <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " style="color:white;" href="etkinlikolustur">Etkinlik Oluştur</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " style="color:white;" href="etkinlikleregozat">Etkinliklere Göz At</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link " style="color:white;" href="oturumac">Oturum Aç</a>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Ara" aria-label="Search" />
+        <button
+          class="btn btn-outline-light my-2 my-sm-0"
+          style="    width: 80px;
+        height: 35px;"
+          type="submit"
+        >
+          Ara
+        </button>
+      </form>
+    </div>
+  </nav>
+  <script src="https://apis.google.com/js/platform.js"></script>
+
+
+<div class="fotomain-container">
+  
+  	<header class="gradient-header" style="background: url(https://fotografium.com/media/rehber/mobil/mobil-hero.png); background-position: 50% 57%; background-size: cover;">
+              <div class="title">
+                <h1>Sanat </h1>
+                <p class="paragraph">Sanat ile ilgili etkinlikleri kaçırmak istemiyorsan doğru yerdesin.Fotoğrafçılık,Opera,Müzik,Dans gibi bir çok sanat dalından haberdar olabilirsin.</p>
+<div class="g-ytsubscribe" data-channel="art" data-layout="default" data-count="default"></div>
+</div>
+      </header>
+
+
+<!-- CONTENT CARDS -->
+<!-- CONTENT CARDS -->
+<!-- CONTENT CARDS -->
+<% veri.forEach(function(İmgAc){ %>
+
+  <div class="container" style="    margin: 0;">
+      <div class="row">
+          <div class="card-section">
+  
+              <div class="rehber-card">
+                  <div class="rehberheader-imgs">
+                      <img class="card-img-tops" src="data:image/jpg;base64,<%= İmgAc.ResimYukle %>" alt="Card image cap">
+                      <!-- RESİMDE VERİTABNINDAN GELİCEK-->
+            
+                  </div>
+                <div class="rehber-content">
+                  <h2 class="rehberheading"><%= İmgAc.EtkinlikAdi %></h2>
+                <p class="rehbertext"><%= İmgAc.AciklamaBir %>
+            </p>
+                  <a class="rehberbtn">Devamını Oku</a>
+              </div>
+              <div class="space"></div>
+            </div>
+              
+            <% }); %>
+            
+              
+            
+            </div>
+          <div class="col-sm">
+          </div>   
+  </div>
+
+
+  <footer class="footer" style="background-color: #2b5ca2;
+    width: 214%;
+  text-align: left;
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+  margin-top: 104px;
+  margin-left: -398px;">
+      <div class="footer-left col-md-4 col-sm-6">
+        <p class="about">
+          <span> Techno EVENT</span> İnsanları monoton yaşantıdan kurtaracak projemizle karşınızdayız,
+          her gün aynı toplantılardan her gün aynı ortamlardan bunalan insanlar için,
+          dünyanın her yerinde ki organizasyonlarda bulunabilirsiniz.
+          Eğitim,bilişim,sanayi ve sanat gibi bir çok dalda etkinliklere katılacaksınız.
+        </p>
+  
+      </div>
+      <div class="footer-center col-md-4 col-sm-6">
+        <div>
+          <i class="fa fa-map-marker"></i>
+          <p><span>Üsküdar 5450</span> İstanbul</p>
+        </div>
+        <div>
+          <i class="fa fa-phone"></i>
+          <p> 0(216) 943 2323</p>
+        </div>
+        <div>
+          <i class="fa fa-envelope"></i>
+          <p><a href="#"> technoevent@gmail.com</a></p>
+        </div>
+      </div>
+      <div class="footer-right col-md-4 col-sm-6">
+        <img src="">
+        <p class="menu">
+          <a href="#"> Anasayfa</a> |
+          <a href="#"> Hakkımızda</a> |
+          <a href="#"> Sponsorlarımız</a> |
+          <a href="#"> Oturum Aç</a> |
+        </p>
+        <p class="name"> TechnoEvent &copy; 2019</p>
+      </div>
+    </footer>
+
+</body>

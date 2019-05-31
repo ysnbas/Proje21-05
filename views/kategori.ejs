@@ -1,24 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Etkinliklere Göz At</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Artist</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css" />
     <link rel="stylesheet" type="text/css" href="/css/app.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-    <script type="text/javascript" src="home.js"></script>
 </head>
 
 <body>
-
-
-    <!-- NAVBAR BAŞLANGIÇ-->
     <nav class="navbar navbar-expand-lg navbar-light #2b5ca2">
         <a class="navbar-brand" href="#">TechnoEvent</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -33,66 +27,67 @@
                             class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item ">
-                    <a class="nav-link" style="color:white;" href="etkinlikleregozat">Etkinliklere Göz At <span
+                    <a class="nav-link" style="color:white;" href="etkinlikolustur">Etkinlik Oluştur <span
                             class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link " style="color:white;" href="etkinlikolustur">Etkinlik Oluştur</a>
-                </li>
 
-                <li class="nav-item">
-                    <a class="nav-link " style="color:white;" href="Login">Oturum Aç</a>
+                <li class="nav-item ">
+                    <a class="nav-link" style="color:white;" href="etkinlikleregozat">Etkinlikere Göz At <span
+                            class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" style="color:white;" href="login">Oturum Aç <span
+                            class="sr-only">(current)</span></a>
                 </li>
             </ul>
+
             <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Ara" aria-label="Search" />
-                <button class="btn btn-outline-light my-2 my-sm-0" style="    width: 80px;
-            height: 35px;" type="submit">Ara</button>
+                <input class="form-control mr-sm-2" type="search" placeholder="Ara" aria-label="Search">
+                <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Ara</button>
             </form>
         </div>
     </nav>
-    <!-- NAVBAR BİTİŞ-->
-
 
     <div class="container">
-
-        <div class="row" style="    margin-top: 63px;">
-            <% veri.forEach(function(İmgAc){ %>
-
-            <div class="card-wrapper col-lg-4 col-md-6 col-xs-12">
-                <div class="card">
-                    <div class="card-img-wrapper">
-                        <img class="card-img-top" src="data:image/jpg;base64,<%= İmgAc.ResimYukle %>"
-                            alt="Card image cap">
-                        <!-- RESİMDE VERİTABNINDAN GELİCEK-->
-
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title"><%= İmgAc.EtkinlikAdi %></h5>
-                        <div class="card-content">
-                            <p class="card-text">
-                                <!-- BURAYA VERİTABANINDAN AÇIKLAMA GELCEK--><%= İmgAc.AciklamaBir %>
-                            </p>
-
-                            <a href="etkinlikbilgileri/<%=İmgAc.id%>" class="btn btn-primary">Etkinlik Bilgileri</a>
-                            <a href="konusmacibilgileri/<%=İmgAc.id%>" class="btn btn-primary">Konuşmacı Bilgileri </a>
-                        </div>
-                    </div>
-
-                </div><br><br>
-
-            </div>
-            <% }); %>
-
-
+        <div class="kategori">
+            <ul>
+                <li class="kutu"><a href="sanat">
+                        <h3>Sanat</h3>
+                    </a></li>
+                <li class="kutu"><a href="muzik">
+                        <h3>Müzik</h3>
+                    </a></li>
+                <li class="kutu"><a href="Sinema">
+                        <h3>Sinema</h3>
+                    </a></li>
+                <li class="kutu"><a href="Meeting">
+                        <h3>Buluşma</h3>
+                    </a></li>
+                <li class="kutu"><a href="spor">
+                        <h3>Spor</h3>
+                    </a></li>
+                <li class="kutu"><a href="fotografcılık">
+                        <h3>Fotoğrafçılık</h3>
+                    </a></li>
+                <li class="kutu"><a href="muze">
+                        <h3>Müze</h3>
+                    </a></li>
+                <li class="kutu"><a href="kitap">
+                        <h3>Kitap</h3>
+                    </a></li>
+                <li class="kutu"><a href="fuar">
+                        <h3>Fuar</h3>
+                    </a></li>
+            </ul>
         </div>
 
     </div>
 
-    <footer class="footer" style="background-color: #204f91;">
+    <footer class=" footer" style="background-color: #204f91;">
         <div class="footer-left col-md-4 col-sm-6">
             <p class="about">
-                <span> Techno EVENT</span> İnsanları monoton yaşantıdan kurtaracak projemizle karşınızdayız,
+                <span> Techno EVENT</span> İnsanları monoton yaşantıdan kurtaracak projemizle
+                karşınızdayız,
                 her gün aynı toplantılardan her gün aynı ortamlardan bunalan insanlar için,
                 dünyanın her yerinde ki organizasyonlarda bulunabilirsiniz.
                 Eğitim,bilişim,sanayi ve sanat gibi bir çok dalda etkinliklere katılacaksınız.
@@ -116,10 +111,10 @@
         <div class="footer-right col-md-4 col-sm-6">
             <img src="">
             <p class="menu">
-                <a href="#"> Anasayfa</a> |
+                <a href="Anasayfa"> Anasayfa</a> |
                 <a href="#"> Hakkımızda</a> |
                 <a href="#"> Sponsorlarımız</a> |
-                <a href="#"> Oturum Aç</a> |
+                <a href="Login"> Oturum Aç</a> |
             </p>
             <p class="name"> TechnoEvent &copy; 2019</p>
         </div>
