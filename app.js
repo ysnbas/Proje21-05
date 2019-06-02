@@ -69,4 +69,7 @@ app.get('/meeting', login.meeting);
 app.get('/fuar', login.fuar);
 app.get('/spor', login.spor);
 
+app.get('/adminpanel', function (req, res) {
+    res.render('adminpanel')
+})
 app.listen(port, () => console.log(`Port Çalışıyor :  ${port}!`));
