@@ -75,12 +75,14 @@
                         <div class="form-group col-12">
                             <div class="form-group has-icon col">
                                 <input type="text" class="form-control" name="EtkinlikAdi" id="eventloca"
-                                    placeholder="Etkinlik Adı" autocapitalize="words" autocomplete="off">
+                                    placeholder="Etkinlik Adı" autocapitalize="words" autocomplete="off"
+                                    required="required">
                             </div>
                             <div class="form-group has-icon col">
-                                <input type="text" class="form-control" name="location" id="eventloca"
-                                    placeholder="Lokasyon" autocapitalize="words" autocomplete="off">
-                                <i class="fa fa-map-marker input-icon"></i>
+                                <select id="sehirler" name="location" required="required">
+                                </select>
+                                <a class="button is-white" onclick="sehirlerigetir()">seçmek için dokunun</a><i
+                                    class="fa fa-map-marker input-icon"></i>
                             </div>
                         </div>
 
@@ -125,15 +127,15 @@
                         <p>
 
                             <input type="file" multiple="false" accept="image/*" id="finput" name="İmageUpload"
-                                onchange="Upload()">
+                                onchange="Upload()" required="required">
 
                         </p>
                     </div>
                     <h3>Organizatör Adı
                     </h3>
                     <div class="control">
-                        <input class="input is-hovered" type="text" name="OrganizatorName"
-                            placeholder="Organizatör Adı"><br>
+                        <input class="input is-hovered" type="text" name="OrganizatorName" placeholder="Organizatör Adı"
+                            required="required"><br>
                     </div>
                     <h1>Açıklama</h1>
 
@@ -189,7 +191,7 @@
                     <h3>Etkinlik Tipi</h3>
                     <div class="control">
                         <div class="select">
-                            <select name="Tip">
+                            <select name="Tip" required="required">
                                 <option>Etkinlik Tipini Seçiniz</option>
                                 <option>Sanat</option>
                                 <option>Müzik</option>
@@ -206,8 +208,8 @@
                     <h3>Etkinlik Konusu</h3>
                     <div class="control">
                         <div class="select">
-                            <select name="Konu">
-
+                            <select name="Konu" required="required">
+                                <option>Konser</option>
                             </select>
                         </div>
                     </div><br>
