@@ -6,6 +6,14 @@ var webconfig = {
   server: '192.168.0.26',
   database: 'Proje'
 };
+/*
+var webconfig = {
+  user: 'papatyagul',
+  password: 'papatya123',
+  server: 'ETKINLIK.mssql.somee.com',
+  database: 'ETKINLIK',
+  port: 1433
+};*/
 module.exports.userGuncelle = function (req, res) {
   sql.connect(webconfig, function (err) {
     if (err) console.log(err);
@@ -57,7 +65,7 @@ module.exports.Guncelle = function (req, res) {
           console.log(err);
 
         } else {
-          res.send('gitti');
+          res.send('EtkinlikYonet e geri gitmesi gerekiyor!!!!!!!!!!!!!');
         }
         sql.close();
       }
@@ -487,6 +495,49 @@ module.exports.Onizleme = function (req, res) {
       }
       sql.close();
       res.render('onizleme', { data: verisonucu.recordset })
+    });
+  });
+}
+module.exports.userGirisPanel = function (req, res) {
+  sql.connect(webconfig, function (err) {
+    if (err) console.log(err);
+    var request1 = new sql.Request();
+    request1.query("select dbo.fn_AdminVarmi('" + req.body.userid + "','" + req.body.pswrd + "') as Sonuc", function (err, verisonucu) {
+      if (err) {
+        console.log(err);
+      }
+      verisonucu.recordset.forEach(function (kullanici) {
+        if (kullanici.Sonuc == "Evet") {
+
+          request1.query("select * from tbl_admin where kullaniciadi='" + req.body.userid + "'", function (err, data) {
+            if (err) {
+              console.log(err);
+            }
+
+            sql.close();
+            res.render('adminpanel', { data: data.recordset });
+
+          });
+
+        }
+        else {
+          res.render('adminpanellogin', { hata: 'Kullanıcı adı veya sifre hatalı' });
+          sql.close();
+        }
+      });
+    });
+  });
+}
+module.exports.userPanel = function (req, res) {
+  sql.connect(webconfig, function (err) {
+    if (err) console.log(err);
+    var request1 = new sql.Request();
+    request1.query('select * from tbl_admin', function (err, verisonucu) {
+      if (err) {
+        console.log(err)
+      }
+      sql.close();
+      res.render('adminpanel', { data: verisonucu.recordset })
     });
   });
 }

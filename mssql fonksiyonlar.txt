@@ -50,6 +50,29 @@ end
 
 select dbo.fn_SifreOncesi('osman@gmail.com','hello') as varmı
 
+-------------------------------------------------------------
+create function fn_AdminVarmi(@KullaniciAd nvarchar(50),@Sifre nvarchar(50))
+returns nvarchar(20)
+as
+begin
+declare @Varmi nvarchar(20)
+declare @Sayi int
+set @Sayi=(select Count(*) from tbl_admin
+where kullaniciadi=@KullaniciAd and sifre=@Sifre)
+
+if(@Sayi>0)
+begin
+set @Varmi='Evet'
+end
+else
+
+begin 
+set @Varmi='Hayir'
+end
+return @Varmi
+end
+
+
 	
 
 	

@@ -9,6 +9,8 @@
 <body layout="row" ng-controller="AppCtrl">
     <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2 md-navigation-drawer" md-component-id="left"
         md-is-locked-open="$mdMedia('gt-md')">
+        <% data.forEach(function(yonet){ %>
+
         <md-toolbar class="md-hue-2 md-tall">
             <span flex></span>
             <div layout="row" layout-align="start center">
@@ -16,9 +18,11 @@
                 <span flex></span>
             </div>
             <span flex></span>
-            <div class="md-body-2">Satnam Saini</div>
-            <div class="md-body-1">sainisatnam52@gmail.com</div>
+
+            <div class="md-body-2"><%=yonet.kullaniciadi%></div>
+            <div class="md-body-1"><%=yonet.mail%></div>
         </md-toolbar>
+        <%});%>
         <md-list>
             <md-list-item class="md-2-line" ng-repeat="item in menu" role="link" ng-click="toggleSidenav('left')">
                 <md-icon md-svg-icon="{{item.icon}}" aria-label="{{item.title}}"></md-icon>
