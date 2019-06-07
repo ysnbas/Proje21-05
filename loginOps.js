@@ -327,7 +327,7 @@ module.exports.sil = function (req, res) {
     var request1 = new sql.Request();
     // console.log(req.body);
     console.log(req.body.delete);
-    request1.query("delete from  tbl_EtkinlikOlustur where id= " + req.body.delete, function (err, verisonucu) {
+    request1.query("delete from tbl_EtkinlikOlustur where id= " + req.body.delete, function (err, verisonucu) {
       if (err) {
         console.log(err);
       }
@@ -351,7 +351,20 @@ module.exports.userYonet = function (req, res) {
     });
   });
 };
-
+module.exports.userYonet2 = function (req, res) {
+  // sql.close();
+  sql.connect(webconfig, function (err) {
+    if (err) console.log(err);
+    var request1 = new sql.Request();
+    request1.query('select * from tbl_EtkinlikOlustur ', function (err, verisonucu) {
+      if (err) {
+        console.log(err);
+      }
+      sql.close();
+      res.render('EtkinlikYonet', { data: verisonucu.recordset });
+    });
+  });
+};
 
 module.exports.kitap = function (req, res) {
   // Sanat kategorisi

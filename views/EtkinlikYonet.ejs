@@ -39,14 +39,14 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item ">
-          <a class="nav-link" style="color:white;" href="#">Anasayfa <span class="sr-only">(current)</span></a>
+          <a class="nav-link" style="color:white;" href="">Anasayfa <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link " style="color:white;" href="#">Etkinlik Oluştur</a>
+          <a class="nav-link " style="color:white;" href="etkinlikolustur/<%=veri[0].Id%>">Etkinlik Oluştur</a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link " style="color:white;" href="#">Oturum Aç</a>
+          <a class="nav-link " style="color:white;" href="#"></a>
         </li>
       </ul>
       <form class="form-inline my-2 my-lg-0">
@@ -67,8 +67,7 @@
       </p>
     </div>
     <% data.forEach(function(yonet){ %>
-    <form method="POST" action="/EtkinlikYonet">
-
+    <form method="POST" action="/EtkinlikYonet/<%= yonet.id %>">
 
       <div>
         <div class="w3-panel w3-win8-blue">

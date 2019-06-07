@@ -22,7 +22,9 @@ app.use('/javascript', express.static(path.join(__dirname, 'javascript')));
 
 app.set('view engine', 'ejs');
 app.use(bp.urlencoded({ extended: false }));
-app.get('/', (req, res) => res.send('Hello World!'));
+app.get('/', (req, res) => res.render('Anasayfa'));
+
+app.get('/Anasayfa', (req, res) => res.render('Anasayfa'));
 
 
 
@@ -43,10 +45,8 @@ app.get('/oturumac', login.UyeOl);
 app.post('/oturumac', login.userOturumAc);
 
 
-app.get('/Anasayfa', function (req, res) {
-    res.render('Anasayfa');
-});
 app.get('/EtkinlikYonet/:Id', login.userYonet);
+app.get('/EtkinlikYonet', login.userYonet2);
 app.get('/unutmaoncesi', login.SifreOncesi);
 app.post('/unutmaoncesi', login.userSifreOncesi);
 

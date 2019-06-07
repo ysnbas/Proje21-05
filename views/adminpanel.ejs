@@ -1,190 +1,135 @@
-<html lang="en" ng-app="StarterApp">
+<html>
 
 <head>
-    <link rel="stylesheet" href="/css/panel.css">
 
-    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/angular_material/0.10.0/angular-material.min.css">
+    <meta charset="UTF-8">
+
+    <title>admin panel</title>
+
+    <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
+
+    <link rel="stylesheet" href="css/panel.css" media="screen" type="text/css" />
+
 </head>
 
-<body layout="row" ng-controller="AppCtrl">
-    <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2 md-navigation-drawer" md-component-id="left"
-        md-is-locked-open="$mdMedia('gt-md')">
-        <% data.forEach(function(yonet){ %>
+<body>
 
-        <md-toolbar class="md-hue-2 md-tall">
-            <span flex></span>
-            <div layout="row" layout-align="start center">
-                <md-icon class="md-avatar" md-svg-icon="avatars:svg-1"></md-icon>
-                <span flex></span>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <div class="container">
+        <div class="row custom-nav">
+            <div class="col-md-3 aa">
+                <div class="h-left-con" style="color: white;">
+                    <% data.forEach(function(yonet){ %>
+                    Kullanıcı Adı: <%=yonet.kullaniciadi%> <br>
+                    Mail: <%=yonet.mail%>
+                    <%});%>
+                </div>
             </div>
-            <span flex></span>
-
-            <div class="md-body-2"><%=yonet.kullaniciadi%></div>
-            <div class="md-body-1"><%=yonet.mail%></div>
-        </md-toolbar>
-        <%});%>
-        <md-list>
-            <md-list-item class="md-2-line" ng-repeat="item in menu" role="link" ng-click="toggleSidenav('left')">
-                <md-icon md-svg-icon="{{item.icon}}" aria-label="{{item.title}}"></md-icon>
-                <div class="md-list-item-text">
-                    <span class="md-body-2">{{item.title}}</span>
-                </div>
-            </md-list-item>
-            <md-divider></md-divider>
-            <md-subheader class="md-no-sticky">Management</md-subheader>
-            <md-list-item class="md-2-line" ng-repeat="item in admin" role="link" ng-click="toggleSidenav('left')">
-                <md-icon md-svg-icon="{{item.icon}}" aria-label="{{item.title}}"></md-icon>
-                <div class="md-list-item-text">
-                    <span class="md-body-2">{{item.title}}</span>
-                </div>
-            </md-list-item>
-        </md-list>
-    </md-sidenav>
-    <md-content layout="column" class="relative" layout-fill role="main">
-        <md-button class="md-fab md-fab-bottom-right" aria-label="Add" ng-click="showAdd($event)">
-            <md-icon md-svg-icon="content:ic_add_24px" aria-label="Plus"></md-icon>
-        </md-button>
-
-        <md-content flex layout="row">
-            <md-sidenav layout="column" layout-fill class="md-sidenav-left md-sidenav-list" md-component-id="nav"
-                md-is-locked-open="$mdMedia('gt-sm')">
-                <md-toolbar class="md-whiteframe-z1" ng-class="{'md-hue-1':showSearch}">
-                    <div class="md-toolbar-tools">
-                        <md-button class="md-icon-button" ng-click="toggleSidenav('left')" hide-gt-md aria-label="Menu">
-                            <md-icon md-svg-icon="navigation:ic_menu_24px" aria-label="Menu"></md-icon>
-                        </md-button>
-                        <h3 ng-if="!showSearch">
-                            Apps
-                        </h3>
-                        <span flex ng-if="!showSearch"></span>
-                        <md-button class="md-icon-button" aria-label="Search" ng-click="toggleSearch()">
-                            <md-icon ng-if="!showSearch" md-svg-icon="action:ic_search_24px" aria-label="Search">
-                            </md-icon>
-                            <md-icon ng-if="showSearch" md-svg-icon="navigation:ic_arrow_back_24px" aria-label="Back">
-                            </md-icon>
-                        </md-button>
-                        <md-input-container md-theme="input" ng-show="showSearch">
-                            <label>&nbsp;</label>
-                            <input ng-model="search.title" placeholder="enter search">
-                        </md-input-container>
-                    </div>
-                </md-toolbar>
-                <md-list flex>
-                    <md-list-item class="md-2-line" ng-repeat="item in apps | filter:search" role="link"
-                        ng-click="toggleSidenav('nav'); $parent.appIcon = item.icon; $parent.appName = item.title; $parent.appDesc = item.desc;">
-                        <md-icon md-svg-icon="{{item.icon}}" aria-label="{{item.title}}"></md-icon>
-                        <div class="md-list-item-text">
-                            <div class="md-body-2">{{item.title}}</div>
-                            <p class="md-body-2">{{item.desc}}</p>
-                        </div>
-                        <md-divider></md-divider>
-                    </md-list-item>
-
-                </md-list>
-            </md-sidenav>
-            <md-content layout="column" layout-fill>
-                <md-toolbar class="animate-show md-whiteframe-z1">
-                    <div class="md-toolbar-tools">
-                        <md-button class="md-icon-button" ng-click="toggleSidenav('nav')" hide-gt-sm aria-label="Menu">
-                            <md-icon md-svg-icon="navigation:ic_arrow_back_24px" aria-label="Menu"></md-icon>
-                        </md-button>
-                        <span flex></span>
-                        <md-button class="md-icon-button" aria-label="Open Settings"
-                            ng-click="showListBottomSheet($event)">
-                            <md-icon md-svg-icon="navigation:ic_more_vert_24px" aria-label="More"></md-icon>
-                        </md-button>
-                    </div>
-                </md-toolbar>
-                <div class="inset" hide-sm></div>
-                <div layout-gt-sm="row" layout-align="center center">
-                    <div flex-gt-sm="95" flex-gt-lg="80">
-                        <md-card>
-                            <md-toolbar class="animate-show md-hue-2" ng-show="!editApp">
-                                <md-list-item class="md-3-line">
-                                    <md-icon class="md-avatar" hide-sm
-                                        md-svg-icon="{{appIcon || 'navigation:ic_apps_24px'}}"></md-icon>
-                                    <div class="md-list-item-text">
-                                        <div class="md-headline">{{appName || 'App Name'}}</div>
-                                        <h4>{{appDesc || 'App description goes here'}}</h4>
-                                    </div>
-                                </md-list-item>
-                            </md-toolbar>
-                            <md-toolbar class="animate-show md-hue-1 edit-app" ng-show="editApp">
-                                <md-list-item class="md-3-line">
-                                    <md-icon class="md-avatar" hide-sm
-                                        md-svg-icon="{{appIcon || 'navigation:ic_apps_24px'}}"></md-icon>
-                                    <div class="md-list-item-text">
-                                        <md-input-container>
-                                            <label>App Name</label>
-                                            <input ng-model="appName">
-                                        </md-input-container>
-                                        <md-input-container>
-                                            <label>App Description</label>
-                                            <input ng-model="appDesc">
-                                        </md-input-container>
-                                    </div>
-                                </md-list-item>
-                                <md-divider></md-divider>
-                            </md-toolbar>
-                            <md-list>
-                                <md-list-item class="md-3-line" ng-repeat="item in attributes">
-                                    <md-icon class="md-accent" hide-sm md-svg-icon="{{item.icon}}"></md-icon>
-                                    <div class="md-list-item-text">
-                                        <h3>{{item.value || 'Attribute value'}}</h3>
-                                        <p>{{item.title || 'Attribute title'}}</p>
-                                    </div>
-                                    <md-divider md-inset hide-sm></md-divider>
-                                    <md-divider hide-gt-sm></md-divider>
-                                </md-list-item>
-                                <md-list-item class="md-3-line">
-                                    <md-icon class="md-accent" hide-sm md-svg-icon="editor:ic_linear_scale_24px">
-                                    </md-icon>
-                                    <div class="md-list-item-text" ng-init="appScale = 20">
-                                        <h3>{{appScale}} units</h3>
-                                        <md-slider ng-show="editApp" flex md-discrete step="1" min="1" max="50"
-                                            ng-model="appScale" aria-label="Scale"></md-slider>
-                                        <p>Scale</p>
-                                    </div>
-                                </md-list-item>
-                                <md-divider></md-divider>
-                                <md-list-item>
-                                    <md-button class="md-primary" ng-show="!editApp">
-                                        <md-icon md-svg-icon="navigation:ic_arrow_forward_24px" aria-label="Forward">
-                                        </md-icon>
-                                        <span>Execute</span>
-                                    </md-button>
-                                    <md-button class="md-primary" ng-click="editApp = 0" ng-show="editApp">
-                                        <md-icon md-svg-icon="navigation:ic_check_24px" aria-label="Save"></md-icon>
-                                        <span>Save</span>
-                                    </md-button>
-                                    <md-button ng-click="editApp = 1" ng-show="!editApp">
-                                        <md-icon md-svg-icon="editor:ic_mode_edit_24px" aria-label="Edit"></md-icon>
-                                        <span>Edit</span>
-                                    </md-button>
-                                    <span flex></span>
-                                    <md-button class="md-warn" ng-show="!editApp">
-                                        <md-icon md-svg-icon="action:ic_delete_24px" aria-label="Delete"></md-icon>
-                                        <span>Delete</span>
-                                    </md-button>
-                                    <md-button ng-click="editApp = 0" ng-show="editApp">
-                                        <md-icon md-svg-icon="navigation:ic_close_24px" aria-label="Cancel"></md-icon>
-                                        <span>Cancel</span>
-                                    </md-button>
-                                </md-list-item>
-                            </md-list>
-                        </md-card>
+            <div class="col-md-7 aa">
+                <div class="h-center-con">
+                    <div class="col-md-4">
+                        <i class="fa fa-search"></i><input type="text" placeholder="Search" />
                     </div>
                 </div>
-            </md-content>
-        </md-content>
-    </md-content>
-    <!-- Angular Material Dependencies -->
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-animate.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-aria.js"></script>
-    <!-- Angular Material -->
-    <script src="//ajax.googleapis.com/ajax/libs/angular_material/0.10.0/angular-material.min.js"></script>
-    <script type="text/javascript" src="/javascript/panel.js"></script>
+            </div>
+            <div class="col-md-2 aa">
+                <div class="h-right-con">
+                    <ul>
+                        <li>
+                            <i class="fa fa-th" style="color:#d9696a;"></i>
+                        </li>
+                        <li>
+                            <i class="fa fa-bar-chart-o" style="color:#666;"></i>
+                        </li>
+                        <li>
+                            <i class="fa fa-bell-o"></i>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row bottom-nav">
+            <div class="col-md-12">
+                <div class="nav-con">
+                    <ul>
+                        <li>
+                            <button>
+                                <i class="fa fa-users"></i>
+                                <h4 onclick="etkinliklerigetir()">ETKİNLİKLER</h4>
+                            </button>
+                        </li>
+                        <li>
+                            <button>
+                                <i class="fa fa-truck"></i>
+                                <h4>PRODUCT</h4>
+                            </button>
+                        </li>
+                        <li>
+                            <button>
+                                <i class="fa fa-umbrella"></i>
+                                <h4>ORDER</h4>
+                            </button>
+                        </li>
+                        <li>
+                            <button>
+                                <i class="fa fa-shopping-cart"></i>
+                                <h4>SHOPPING</h4>
+                            </button>
+                        </li>
+                        <li>
+                            <button>
+                                <i class="fa fa-gears"></i>
+                                <h4>SETTING</h4>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row quick-bar">
+            <div class="col-md-2">
+                <input type="text" placeholder="Üye adı, Numarası" />
+                <div class="search-btn">Ara</div>
+            </div>
+            <div class="col-md-2">
+
+            </div>
+        </div>
+        <div class="row content">
+            <% data.forEach(function(yonet){ %>
+
+            <div class="col-md-12">
+                <table class="table table-bordered no-more-tables">
+                    <thead>
+                        <tr>
+                            <th class="text-center" width="5%">Etkinlik Adı</th>
+                            <th class="text-center" width="12%">Etkinlik Açıklama</th>
+                            <th class="text-center" width="8%">URL</th>
+                            <th class="text-center" width="4%">Etkinlik Konusu</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-center"><%= yonet.EtkinlikAdi %></td>
+                            <td class="text-center"><%= yonet.AciklamaBir %></td>
+                            <td class="text-center"><%= yonet.WebSiteUrl %></td>
+                            <td class="text-center"><%= yonet.EtkinlikTipi %></td>
+                            <td class="text-center">
+                                <div class="sparklines" sparktype="bar" sparkbarcolor="#0aa699" values="4,5,6,3,6,4,1">
+                                </div>
+                            </td>
+                            <td class="text-center">
+                                <div class="sparklines" sparktype="bar" sparkbarcolor="#0aa699" values="4,5,6,3,6,4,1">
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <% }); %>
+
+        </div>
+    </div>
 
 </body>
 
