@@ -229,31 +229,20 @@
             <div class="col-md-12">
                 <div class="nav-con">
                     <ul>
-
                         <li>
-                            <button>
-                                <i class="fa fa-users"></i>
-                                <h4>MEMBERS</h4>
-                            </button>
-
+                            <i class="fa fa-users"></i>
+                            <h4>MEMBERS</h4>
                         </li>
                         <li>
-                            <button>
-                                <i class="fa fa-truck"></i>
-                                <a href="http://localhost:3000/istatistikler " aria-placeholder="İstatistikler">
-                                    <h4>İstatistikler</h4>
-                                </a>
-                            </button>
-
+                            <i class="fa fa-truck"></i>
+                            <a href="/istatistikler " aria-placeholder="İstatistikler">
+                                <h4>İstatistikler</h4>
+                            </a>
                         </li>
                         <li>
-                            <button>
-                                <a href="http://localhost:3000/adminpanel/etkinliklistele"
-                                    aria-placeholder="Etkinlikler">
-                                    <h4>etkinlikler</h4>
-                                </a>
-                            </button>
-
+                            <i class="fa fa-umbrella"></i>
+                            <a href="/etkinliklistele " aria-placeholder="Etkinlikler"></a>
+                            <h4>Etkinlik</h4>
                         </li>
                         <li>
                             <i class="fa fa-shopping-cart"></i>
@@ -282,25 +271,25 @@
                     <thead>
 
                         <% veri.forEach(function(İmgAc){ %>
-                        <form method="POST" action="/adminpanel/<%= İmgAc.Id%>">
+                        <form method="POST" action="/adminpanel/etkinliklistele/<%= İmgAc.id%>">
                             <tr>
-                                <th class="text-center" width="">Kullanıcı Adı </th>
-                                <th class="text-center" width="">Üye Adı</th>
-                                <th class="text-center" width="23px">Üye Soyadı</th>
-                                <th class="text-center" width="20px">E-Mail</th>
-                                <th class="text-center" width="20px">Üyeliği Sil
+                                <th class="text-center" width="">Etkinlik Adı </th>
+                                <th class="text-center" width="">Etkinlik Lokasyon</th>
+                                <th class="text-center" width="23px">Başlangıç Tarihi</th>
+                                <th class="text-center" width="20px">Bitiş Tarihi</th>
+                                <th class="text-center" width="20px">Etkinliği Sil
                                     <input name="delete" type="submit" class=" button is-primary"
-                                        value="<%=İmgAc.Id%>">Sil</button>
+                                        value="<%=İmgAc.id%>">Sil</button>
                                 </th>
                             </tr>
                         </form>
             </div>
             </thead>
             <tbody>
-                <td class="text-center"><%= İmgAc.KullanıcıAdi%></td>
-                <td class="text-center"><%= İmgAc.Adi%></td>
-                <td class="text-center"><%= İmgAc.Soyadi%></td>
-                <td class="text-center"><%= İmgAc.Email%></td>
+                <td class="text-center"><%= İmgAc.EtkinlikAdi%></td>
+                <td class="text-center"><%= İmgAc.Lokasyon%></td>
+                <td class="text-center"><%= İmgAc.BaslangıcTarih%></td>
+                <td class="text-center"><%= İmgAc.BitisTarihi%></td>
                 </tr>
                 <% }); %>
             </tbody>

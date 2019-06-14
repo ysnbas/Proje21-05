@@ -104,6 +104,7 @@
         color: #777;
     }
 
+
     .bottom-nav ul {
         width: 98%;
         margin: 0;
@@ -134,9 +135,88 @@
         font-family: 'Roboto', sans-serif !important;
     }
 
+    #quote {
+        font-size: 10pt;
+        color: #848484;
+        letter-spacing: 0px;
+    }
+
+    .number {
+        width: 40%;
+        font-size: 40pt;
+        position: relative;
+        float: left;
+        text-align: right;
+        overflow: hidden;
+        padding-top: 10px;
+        padding-right: 15px;
+    }
+
+    .type {
+        font-family: 'Roboto', sans-serif;
+        font-size: 5pt;
+        padding-top: 33px;
+        width: 46%;
+        float: left;
+        position: relative;
+        text-align: left;
+        overflow: hidden;
+        font-size: 20pt;
+        padding-left: 15px;
+
+    }
+
+    .details {
+        font-size: 10pt;
+        font-style: italic;
+    }
+
+    .statbox div {
+        /* float:left; */
+    }
+
+    .statbox {
+        height: 101px;
+        border-radius: 15px;
+        width: 360px;
+        margin-top: 40px;
+        margin-left: 60px;
+        background: -webkit-linear-gradient(#120F0F, #151212);
+        background: -o-linear-gradient(#120F0F, #151212);
+        background: -moz-linear-gradient(#120F0F, #151212);
+        background: linear-gradient(#2d3438, #2d3438);
+        text-align: center;
+        color: #ecf0f1;
+        font-size: 30pt;
+        font-family: 'Montserrat', sans-serif;
+
+    }
+
+    .statbox2 {
+        height: 101px;
+        border-radius: 15px;
+        width: 360px;
+        margin-top: -100px;
+        margin-left: 480px;
+        background: -webkit-linear-gradient(#120F0F, #151212);
+        background: -o-linear-gradient(#120F0F, #151212);
+        background: -moz-linear-gradient(#120F0F, #151212);
+        background: linear-gradient(#2d3438, #2d3438);
+        text-align: center;
+        color: #ecf0f1;
+        font-size: 30pt;
+        font-family: 'Montserrat', sans-serif;
+
+    }
+
+    #page {
+        height: 500px;
+    }
+
+
     .quick-bar {
         background: #fff;
-        min-height: 100px;
+        min-height: 460px;
         border-bottom: 1px solid #ebebeb;
         padding: 10px 0 0 0;
     }
@@ -229,39 +309,35 @@
             <div class="col-md-12">
                 <div class="nav-con">
                     <ul>
-
                         <li>
                             <button>
                                 <i class="fa fa-users"></i>
-                                <h4>MEMBERS</h4>
+                                <h4></h4>
                             </button>
-
                         </li>
                         <li>
                             <button>
                                 <i class="fa fa-truck"></i>
-                                <a href="http://localhost:3000/istatistikler " aria-placeholder="İstatistikler">
-                                    <h4>İstatistikler</h4>
-                                </a>
+                                <a href="http://localhost:3000/istatistikler">İstatistikler</a>
                             </button>
-
                         </li>
                         <li>
                             <button>
-                                <a href="http://localhost:3000/adminpanel/etkinliklistele"
-                                    aria-placeholder="Etkinlikler">
-                                    <h4>etkinlikler</h4>
-                                </a>
+                                <i class="fa fa-umbrella"></i>
+                                <h4>ORDER</h4>
                             </button>
-
                         </li>
                         <li>
-                            <i class="fa fa-shopping-cart"></i>
-                            <h4>SHOPPING</h4>
+                            <button>
+                                <i class="fa fa-shopping-cart"></i>
+                                <h4>SHOPPING</h4>
+                            </button>
                         </li>
                         <li>
-                            <i class="fa fa-gears"></i>
-                            <h4>SETTING</h4>
+                            <button>
+                                <i class="fa fa-gears"></i>
+                                <h4>SETTING</h4>
+                            </button>
                         </li>
                     </ul>
                 </div>
@@ -269,43 +345,26 @@
         </div>
         <div class="row quick-bar">
             <div class="col-md-2">
-                <input type="text" placeholder="Üye adı, Numarası" />
-                <div class="search-btn">Ara</div>
-            </div>
-            <div class="col-md-2">
+                <% veri.forEach(function(İmgAc){ %>
+                <div class="statbox" style="color:#e6dbdc">
+                    <div class="number"><%= İmgAc.ToplamUye%></div>
+                    <div class="type" style="color:#e6dbdc">Kayıtlı Üye
 
-            </div>
-        </div>
-        <div class="row content">
-            <div class="col-md-12">
-                <table class="table table-bordered no-more-tables">
-                    <thead>
+                    </div>
+                </div>
+                <div class="col-md-2">
 
-                        <% veri.forEach(function(İmgAc){ %>
-                        <form method="POST" action="/adminpanel/<%= İmgAc.Id%>">
-                            <tr>
-                                <th class="text-center" width="">Kullanıcı Adı </th>
-                                <th class="text-center" width="">Üye Adı</th>
-                                <th class="text-center" width="23px">Üye Soyadı</th>
-                                <th class="text-center" width="20px">E-Mail</th>
-                                <th class="text-center" width="20px">Üyeliği Sil
-                                    <input name="delete" type="submit" class=" button is-primary"
-                                        value="<%=İmgAc.Id%>">Sil</button>
-                                </th>
-                            </tr>
-                        </form>
-            </div>
-            </thead>
-            <tbody>
-                <td class="text-center"><%= İmgAc.KullanıcıAdi%></td>
-                <td class="text-center"><%= İmgAc.Adi%></td>
-                <td class="text-center"><%= İmgAc.Soyadi%></td>
-                <td class="text-center"><%= İmgAc.Email%></td>
-                </tr>
+                    <div class="statbox2" style="color:#e6dbdc">
+                        <div class="number"><%= İmgAc.ToplamEtkinlik%></div>
+                        <div class="type" style="color:#e6dbdc">Toplam Etkinlik
+
+                        </div>
+                    </div>
+                </div>
                 <% }); %>
-            </tbody>
-            </table>
+            </div>
         </div>
+
     </div>
     </div>
 

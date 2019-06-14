@@ -3,7 +3,7 @@ const sql = require('mssql');
 var webconfig = {
   user: 'Depo  ',
   password: 'ysnbas',
-  server: '192.168.0.26',
+  server: '192.168.1.106',
   database: 'Proje'
 };
 /*
@@ -193,6 +193,7 @@ module.exports.userGiris = function (req, res) {
       }
       verisonucu.recordset.forEach(function (kullanici) {
         if (kullanici.Sonuc == "Evet") {
+
 
           request1.query("select * from tbl_Uye where KullanıcıAdi='" + req.body.ad + "'", function (err, data) {
             req.session.ad = req.body.ad;
@@ -545,12 +546,79 @@ module.exports.userPanel = function (req, res) {
   sql.connect(webconfig, function (err) {
     if (err) console.log(err);
     var request1 = new sql.Request();
-    request1.query('select * from tbl_admin', function (err, verisonucu) {
+    request1.query('select * from tbl_Uye', function (err, verisonucu) {
       if (err) {
         console.log(err)
       }
       sql.close();
-      res.render('adminpanel', { data: verisonucu.recordset })
+      res.render('adminpanel', { veri: verisonucu.recordset })
     });
   });
 }
+
+
+
+module.exports.istatistik = function (req, res) {
+  sql.connect(webconfig, function (err) {
+    if (err) console.log(err);
+    var request1 = new sql.Request();
+    // console.log(req.body);
+
+    request1.query('select COUNT(DISTINCT id) as ToplamEtkinlik,COUNT(DISTINCT Id) as ToplamUye from tbl_Uye,tbl_EtkinlikOlustur;', function (
+      err,
+      verisonucu
+    ) {
+      if (err) {
+        console.log(err);
+      }
+      sql.close();
+      res.render('istatistikler', { veri: verisonucu.recordset });
+    });
+  });
+};
+module.exports.etkinlikPanel = function (req, res) {
+  sql.connect(webconfig, function (err) {
+    if (err) console.log(err);
+    var request1 = new sql.Request();
+    console.log(req.body.delete);
+    request1.query('select * from tbl_EtkinlikOlustur', function (err, verisonucu) {
+      if (err) {
+        console.log(err);
+      }
+      sql.close();
+      res.render('etkinliklistele', { veri: verisonucu.recordset });
+    });
+  });
+};
+module.exports.etkinlikSil = function (req, res) {
+  // Etkinlik Silme Admin Paneli
+  sql.connect(webconfig, function (err) {
+    if (err) console.log(err);
+    var request1 = new sql.Request();
+    // console.log(req.body);
+    console.log(req.body.delete);
+    request1.query('delete from  tbl_EtkinlikOlustur where id= ' + req.body.delete, function (err, verisonucu) {
+      if (err) {
+        console.log(err);
+      }
+      sql.close();
+      res.redirect('/adminpanel/etkinliklistele');
+    });
+  });
+};
+module.exports.SİL = function (req, res) {
+  // Üye Silme Admin Paneli
+  sql.connect(webconfig, function (err) {
+    if (err) console.log(err);
+    var request1 = new sql.Request();
+    // console.log(req.body);
+    console.log(req.body.delete);
+    request1.query('delete from  tbl_Uye where Id= ' + req.body.delete, function (err, verisonucu) {
+      if (err) {
+        console.log(err);
+      }
+      sql.close();
+      res.redirect('adminpanel');
+    });
+  });
+};
