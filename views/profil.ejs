@@ -46,7 +46,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link " style="color:white;" href="#">Oturum Aç</a>
+                    <a href="http://localhost:3000/etkinlikleregozat" style="color: white;">Etkinliklere Göz At</a>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
@@ -54,25 +54,7 @@
                 <button class="btn btn-outline-light my-2 my-sm-0" style="    width: 80px;
             height: 35px;" type="submit">Ara</button>
 
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Adı Soyadı
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">Biletlerim</a>
-                        <a class="dropdown-item" href="#">Etkinlikleri Yönet</a>
-                        <a class="dropdown-item" href="#">Mesajlarım</a>
-                        <hr>
-                        <a class="dropdown-item" href="#">Profilim</a>
-                        <a class="dropdown-item" href="#">Ayarlar</a>
-                        <hr>
-                        <a class="dropdown-item" href="#">Çıkış Yap</a>
 
-
-
-                    </div>
-                </div>
             </form>
         </div>
     </nav>
@@ -92,13 +74,11 @@
         <% veri.forEach(function(person){ %>
 
         <div class="right_col">
-            <h2 class="name">John Doe</h2>
-            <h3 class="location">San Francisco, CA</h3>
+            <h2 class="name"><%=person.Adi%>-<%=person.Soyadi%></h2>
             <ul class="contact_information">
-                <li class="work">CEO</li>
+                <li class="username"><%=person.KullanıcıAdi%></li>
                 <li class="website"><a class="nostyle" href="#"><%=person.WebSiteUrl%></a></li>
-                <li class="mail"></li>
-                <li class="phone">1-(732)-757-2923</li>
+                <li class="mail"><%=person.Email%></li>
             </ul>
 
         </div>

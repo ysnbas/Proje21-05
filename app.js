@@ -52,7 +52,7 @@ app.post('/unutmaoncesi', login.userSifreOncesi);
 
 app.post('/sifremiunuttum', login.usersifreunutmak);
 
-app.get('/profil', login.userprofil);
+app.get('/profil/:Id', login.userprofil);
 app.get('/konusmacibilgileri/:id', login.userKonusmaciBilgileri);
 app.get('/kategori', function (req, res) {
     res.render('kategori')

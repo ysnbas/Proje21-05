@@ -33,11 +33,11 @@
                 </li>
                 <% veri.forEach(function(p){ %>
                 <li class=" nav-item">
-                    <a class="nav-link "><%=p.Adi%></a>
+                    <a class="nav-link" href="profil/<%=veri[0].Id%>"><%=p.Adi%></a>
                 </li>
                 <% }); %>
 
-                <li class="nav-item">
+                <li class=" nav-item">
                     <a class="nav-link" href="EtkinlikYonet/<%=veri[0].Id%>">Etkinlikleri Yönet</a>
                 </li>
 

@@ -1063,12 +1063,9 @@ div.portfoliocard div.right_col {
   height: 340px;
 }
 div.portfoliocard div.left_col {
-  width: 40%;
-  padding-top: 85px;
-  box-sizing: border-box;
 }
 div.portfoliocard div.right_col {
-  width: 60%;
+  width: 100%;
   background: rgba(245, 245, 245, 1);
   border-left: 1px solid rgba(230, 230, 230, 1);
   box-shadow: inset 0px 1px 1px rgba(255, 255, 255, 0.7);
@@ -1109,7 +1106,7 @@ div.portfoliocard ul.contact_information {
 }
 div.portfoliocard ul.contact_information li {
   height: 35px;
-  width: 180px;
+  width: 280px;
   line-height: 25px;
   font-weight: 300;
   font-size: 15px;
