@@ -33,9 +33,8 @@
                             class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item ">
-                    <a class="nav-link" style="color:white;"
-                        href="http://localhost:3000/etkinlikolustur/:id">Etkinliklere Göz At <span
-                            class="sr-only">(current)</span></a>
+                    <a class="nav-link" style="color:white;" href="http://localhost:3000/etkinlikleregozat">Etkinliklere
+                        Göz At <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link " style="color:white;" href="etkinlikolustur">Etkinlik Oluştur</a>
@@ -57,7 +56,7 @@
                         <a class="nav-link " style="color: black;     margin-top: -30px;" href="Meeting">Meeting</a>
                         <a class="nav-link " style="color: black;     margin-top: -30px;" href="fuar">Fuar</a>
                         <a class="nav-link " style="color: black;     margin-top: -30px;"
-                            href="fotograf">Fotoğrafçılık</a>
+                            href="fotografcilik">Fotoğrafçılık</a>
                     </div>
                 </div>
             </form>
@@ -88,6 +87,10 @@
 
                             <a href="etkinlikbilgileri/<%=İmgAc.id%>" class="btn btn-primary">Etkinlik Bilgileri</a>
                             <a href="konusmacibilgileri/<%=İmgAc.id%>" class="btn btn-primary">Konuşmacı Bilgileri </a>
+                            <form action="etkinlikleregozat" method="post">
+                                <button type="submit" class="btn btn-primary"
+                                    style="width: 95%; margin-top: 10px;">Etkinliğe Katıl</button>
+                            </form>
                         </div>
                     </div>
 

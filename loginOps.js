@@ -137,9 +137,7 @@ module.exports.userLogin = function (req, res) {
       req.body.gender +
       "','" +
       req.body.Tip +
-      "','" +
-      req.body.Konu +
-      "',(select Id from tbl_Uye where KullanıcıAdi='" + req.session.ad + "'))",
+      "','" + req.body.Konu + "',(select Id from tbl_Uye where KullanıcıAdi='" + req.session.ad + "'))",
       function (err, data) {
         if (err) {
           console.log(err);
@@ -304,7 +302,7 @@ module.exports.userprofil = function (req, res) {
   sql.connect(webconfig, function (err) {
     if (err) console.log(err);
     var request1 = new sql.Request();
-    request1.query('select * from tbl_EtkinlikOlustur,tbl_Uye where tbl_EtkinlikOlustur.EtkinlikId=tbl_Uye.Id', function (err, verisonucu) {
+    request1.query('select * from tbl_Uye where Id=' + req.params.Id, function (err, verisonucu) {
       if (err) {
         console.log(err);
       }
@@ -626,5 +624,22 @@ module.exports.SİL = function (req, res) {
       sql.close();
       res.redirect('adminpanel');
     });
+  });
+};
+
+module.exports.UserKatıl = function (req, res) {
+  // Üye Silme Admin Paneli
+  sql.connect(webconfig, function (err) {
+    if (err) console.log(err);
+    var request1 = new sql.Request();
+    // console.log(req.body);
+    request1.query("INSERT INTO tbl_EtkinlikKatılımcıları(KullanıcıAdi,KatılımcıId) VALUES('" + "',(select Adi from tbl_Uye where KullanıcıAdi='" + req.session.ad + "')'" + "',(select Id from tbl_Uye where KullanıcıAdi='" + req.session.ad + "')'" + "')",
+      function (err, verisonucu) {
+        if (err) {
+          console.log(err);
+        }
+        sql.close();
+        res.redirect('etkinlikleregozat');
+      });
   });
 };

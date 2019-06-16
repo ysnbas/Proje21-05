@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css?family=Lato:300,400');
-@import url('https://fonts.googleapis.com/css?family=Lato:300,400');
+@import url("https://fonts.googleapis.com/css?family=Lato:300,400");
+@import url("https://fonts.googleapis.com/css?family=Lato:300,400");
 
 * {
   padding: 0;
@@ -51,7 +51,7 @@ body {
 }
 
 .navbar ul {
-  margin-left: 550px;
+  margin-left: 280px;
   list-style: none;
   height: inherit;
   line-height: inherit;
@@ -82,7 +82,7 @@ body {
 .intro {
   width: 100%;
   height: 100vh;
-  background: url('https://i.hizliresim.com/ZX82zk.png') no-repeat center center;
+  background: url("https://i.hizliresim.com/ZX82zk.png") no-repeat center center;
   background-size: cover;
   background-color: #000;
 }
@@ -165,7 +165,7 @@ body {
   .navbar .navbar-toggler span::before,
   .navbar .navbar-toggler span::after {
     display: block;
-    content: '';
+    content: "";
     background-color: #fff;
     height: 3px;
     width: 28px;
@@ -220,10 +220,10 @@ body {
   padding-top: 40px;
 }
 
-@import url('https://fonts.googleapis.com/css?family=Google+Sans:100,300,400,500,700,900,100i,300i,400i,500i,700i,900i');
+@import url("https://fonts.googleapis.com/css?family=Google+Sans:100,300,400,500,700,900,100i,300i,400i,500i,700i,900i");
 
 html {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 14px;
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
@@ -237,7 +237,7 @@ html {
 
 body {
   margin: 0;
-  font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
   font-size: 14px;
   line-height: 1.6;
 }
@@ -305,7 +305,7 @@ h4,
   padding: 15px;
   border: 1px solid rgb(179, 17, 49);
   margin-bottom: 2px;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-size: 14px;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
@@ -401,7 +401,7 @@ h4,
 }
 
 .modal-content .modal-header .modal-title {
-  font-family: 'Google Sans', Roboto, Arial, sans-serif;
+  font-family: "Google Sans", Roboto, Arial, sans-serif;
   margin-top: 0;
 }
 
@@ -586,7 +586,8 @@ h4,
 .mfp-content {
   display: block;
   max-width: 450px;
-  box-shadow: 0 0.72rem 0.72rem rgba(0, 0, 0, 0.3), 0.6rem 0.5rem 1.3rem rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0.72rem 0.72rem rgba(0, 0, 0, 0.3),
+    0.6rem 0.5rem 1.3rem rgba(0, 0, 0, 0.15);
   padding: 25px;
 }
 
@@ -643,7 +644,8 @@ h4,
   font-size: 1em;
   line-height: 1.5;
   border-radius: 0.25rem;
-  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
 .uploadcare--widget__button:hover {
@@ -667,7 +669,7 @@ h1 {
   padding-bottom: 5pt;
 }
 
-input[type='text'] {
+input[type="text"] {
   height: 20pt;
   width: 100%;
   padding: 0;
@@ -721,7 +723,7 @@ select {
   outline: none;
 }
 
-input[type='number'] {
+input[type="number"] {
   height: 30pt;
   border: 0;
   padding: 0;
@@ -768,12 +770,13 @@ textarea {
   margin: 0 0 10px 0;
 }
 
-input[type='checkbox'] {
+input[type="checkbox"] {
   margin: 0 auto;
   margin-bottom: 10px;
   -webkit-appearance: button;
   border: none;
-  background: url(http://www.pixelslip.be/img/check.png) no-repeat 0 0 transparent;
+  background: url(http://www.pixelslip.be/img/check.png) no-repeat 0 0
+    transparent;
   background-color: #ccc;
   width: 55px;
   height: 26px;
@@ -784,12 +787,12 @@ input[type='checkbox'] {
   transition: background-color 1s;
 }
 
-input[type='checkbox'].error {
+input[type="checkbox"].error {
   background-color: #c63d3d;
 }
 
-input[type='checkbox']:after {
-  content: '';
+input[type="checkbox"]:after {
+  content: "";
   display: block;
   position: absolute;
   top: 0;
@@ -802,32 +805,58 @@ input[type='checkbox']:after {
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 
   background: rgb(255, 255, 255);
-  background: -moz-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(243, 243, 243, 1) 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(255, 255, 255, 1)), color-stop(100%, rgba(243, 243, 243, 1)));
-  background: -webkit-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(243, 243, 243, 1) 100%);
-  background: -o-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(243, 243, 243, 1) 100%);
-  background: -ms-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(243, 243, 243, 1) 100%);
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(243, 243, 243, 1) 100%);
+  background: -moz-linear-gradient(
+    top,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(243, 243, 243, 1) 100%
+  );
+  background: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    color-stop(0%, rgba(255, 255, 255, 1)),
+    color-stop(100%, rgba(243, 243, 243, 1))
+  );
+  background: -webkit-linear-gradient(
+    top,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(243, 243, 243, 1) 100%
+  );
+  background: -o-linear-gradient(
+    top,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(243, 243, 243, 1) 100%
+  );
+  background: -ms-linear-gradient(
+    top,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(243, 243, 243, 1) 100%
+  );
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(243, 243, 243, 1) 100%
+  );
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#f3f3f3', GradientType=0);
 
   transition: 0.5s all;
 }
 
-input[type='checkbox']:checked {
+input[type="checkbox"]:checked {
   background-color: #79d122;
 }
 
-input[type='checkbox']:checked:after {
+input[type="checkbox"]:checked:after {
   left: 45%;
 }
 
-input[type='checkbox'] + label {
+input[type="checkbox"] + label {
   color: #ccc;
   font-style: italic;
   display: none;
 }
 
-input[type='checkbox']:checked + label {
+input[type="checkbox"]:checked + label {
   color: black;
   font-style: normal;
   display: block;
@@ -1019,12 +1048,13 @@ div.portfoliocard {
 div.portfoliocard div.coverphoto {
   width: 100%;
   height: 120px;
-  background: url('http://farm8.staticflickr.com/7149/6484148411_baf8d2e934_z.jpg');
+  background: url("http://farm8.staticflickr.com/7149/6484148411_baf8d2e934_z.jpg");
   background-position: center center;
   border-top-right-radius: 5px;
   border-top-left-radius: 5px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  box-shadow: inset 0px 3px 20px rgba(255, 255, 255, 0.3), 1px 0px 2px rgba(255, 255, 255, 0.7);
+  box-shadow: inset 0px 3px 20px rgba(255, 255, 255, 0.3),
+    1px 0px 2px rgba(255, 255, 255, 0.7);
   z-index: 99;
 }
 div.portfoliocard div.left_col,
@@ -1053,7 +1083,7 @@ div.portfoliocard div.profile_picture {
   top: 65px;
   left: 40px;
   border-radius: 100%;
-  background-image: url('http://cache.spreadshirt.net/Public/Common/images/profile-pic-placeholder_130x130.png');
+  background-image: url("http://cache.spreadshirt.net/Public/Common/images/profile-pic-placeholder_130x130.png");
   background-size: 100% 100%;
   padding: 7px;
   border: 4px solid rgba(255, 255, 255, 1);
@@ -1093,7 +1123,7 @@ div.portfoliocard ul.contact_information li {
   cursor: default;
 }
 div.portfoliocard ul.contact_information li:before {
-  content: '';
+  content: "";
   width: 25px;
   height: 25px;
   display: block;
@@ -1108,19 +1138,19 @@ div.portfoliocard ul.contact_information li:hover:before {
   opacity: 1;
 }
 div.portfoliocard ul.contact_information li.work:before {
-  background-image: url('http://schulzmarcel.de/x/icons/case_24.png');
+  background-image: url("http://schulzmarcel.de/x/icons/case_24.png");
 }
 div.portfoliocard ul.contact_information li.website:before {
-  background-image: url('http://schulzmarcel.de/x/icons/globe_24.png');
+  background-image: url("http://schulzmarcel.de/x/icons/globe_24.png");
 }
 div.portfoliocard ul.contact_information li.mail:before {
-  background-image: url('http://schulzmarcel.de/x/icons/paper_plane_24.png');
+  background-image: url("http://schulzmarcel.de/x/icons/paper_plane_24.png");
 }
 div.portfoliocard ul.contact_information li.phone:before {
-  background-image: url('http://schulzmarcel.de/x/icons/phone_24.png');
+  background-image: url("http://schulzmarcel.de/x/icons/phone_24.png");
 }
 div.portfoliocard ul.contact_information li.resume:before {
-  background-image: url('http://schulzmarcel.de/x/icons/inbox_24.png');
+  background-image: url("http://schulzmarcel.de/x/icons/inbox_24.png");
 }
 div.portfoliocard div.followers,
 div.portfoliocard div.following {

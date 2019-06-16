@@ -34,7 +34,8 @@ app.get('/etkinlikolustur/:Id', function (req, res) {
 
 app.post('/etkinlikolustur/:Id', upload.single('İmageUpload'), login.userLogin); // upload single resim için.
 app.get('/gozat', login.userGozAt);
-app.get('/etkinlikleregozat', login.userGozAt);
+app.get('/etkinlikleregozat/:Id', login.userGozAt);
+app.post('/etkinlikleregozat/:Id', login.UserKatıl);
 
 app.get('/etkinlikbilgileri/:id', login.userEtkinlikBilgileri);
 
@@ -82,4 +83,6 @@ app.get('/adminpanel/etkinliklistele', login.etkinlikPanel);
 app.post('/adminpanel/etkinliklistele/:id', login.etkinlikSil);
 
 app.post('/adminpanel/:Id', login.SİL);
+
+app.post('/etkinlikleregozat', login.UserKatıl);
 app.listen(port, () => console.log(`Port Çalışıyor :  ${port}!`));

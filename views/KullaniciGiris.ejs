@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Etkinlik</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css" />
-    <link rel="stylesheet" type="text/css" href="/css/app.css" />
+    <link rel="stylesheet" type="text/css" href="/css/spor.css" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
@@ -40,11 +40,28 @@
                 <li class=" nav-item">
                     <a class="nav-link" href="EtkinlikYonet/<%=veri[0].Id%>">Etkinlikleri Yönet</a>
                 </li>
+                <li class=" nav-item">
+                    <a class="nav-link" href="EtkinlikYonet/<%=veri[0].Id%>">Etkinliklerim</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="etkinlikleregozat/<%=veri[0].Id%>">Etkinliklere Gözat</a>
+                </li>
 
             </ul>
             <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Ara" aria-label="Search">
-                <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Ara</button>
+
+                <div class="dropdown" style="    margin-left: 50px;">
+                    <span>Kategoriler</span>
+                    <div class="dropdown-content" style="color:black;">
+                        <a class="nav-link " style="color: black;     margin-top: -30px;" href="spor">Spor</a>
+                        <a class="nav-link " style="color: black;     margin-top: -30px;" href="muzik">Müzik</a>
+                        <a class="nav-link " style="color: black;     margin-top: -30px;" href="Sinema">Sinema</a>
+                        <a class="nav-link " style="color: black;     margin-top: -30px;" href="Meeting">Meeting</a>
+                        <a class="nav-link " style="color: black;     margin-top: -30px;" href="fuar">Fuar</a>
+                        <a class="nav-link " style="color: black;     margin-top: -30px;"
+                            href="fotografcilik">Fotoğrafçılık</a>
+                    </div>
+                </div>
             </form>
         </div>
     </nav>
