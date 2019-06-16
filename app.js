@@ -64,10 +64,11 @@ app.post('/EtkinlikYonet/:id', login.sil);
 app.get('/kitap', login.kitap);
 app.get('/muzik', login.muzik);
 app.get('/sinema', login.sinema);
-app.get('/sanat', login.sanat);
 app.get('/meeting', login.meeting);
 app.get('/fuar', login.fuar);
 app.get('/spor', login.spor);
+app.get('/fotografcilik', login.fotografcilik);
+
 
 app.get('/adminpanel/adminpanel', login.userPanel);
 

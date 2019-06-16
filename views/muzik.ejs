@@ -1,21 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Artist</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Etkinliklere Göz At</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css" />
-  <link rel="stylesheet" type="text/css" href="/css/app.css" />
+  <link rel="stylesheet" type="text/css" href="/css/spor.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
   <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-  <script type="text/javascript" src="/javascript/home.js"></script>
+  <script type="text/javascript" src="home.js"></script>
 </head>
 
-</html>
-
 <body>
+
+
   <!-- NAVBAR BAŞLANGIÇ-->
   <nav class="navbar navbar-expand-lg navbar-light #2b5ca2">
     <a class="navbar-brand" href="#">TechnoEvent</a>
@@ -27,121 +29,130 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item ">
-          <a class="nav-link" style="    position: absolute;
-          margin-left: -120px;
-          margin-top: 0px; color: white;" href="Anasayfa">Anasayfa <span class="sr-only">(current)</span></a>
+          <a class="nav-link" style="color:white;" href="Anasayfa">Anasayfa <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link" style="color:white;" href="http://localhost:3000/etkinlikolustur/:id">Etkinliklere Göz At
+            <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
           <a class="nav-link " style="color:white;" href="etkinlikolustur">Etkinlik Oluştur</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link " style="color:white;" href="etkinlikleregozat">Etkinliklere Göz At</a>
-        </li>
 
         <li class="nav-item">
-          <a class="nav-link " style="color:white;" href="oturumac">Oturum Aç</a>
+          <a class="nav-link " style="color:white;" href="Login">Oturum Aç</a>
         </li>
       </ul>
+
       <form class="form-inline my-2 my-lg-0">
         <input class="form-control mr-sm-2" type="search" placeholder="Ara" aria-label="Search" />
         <button class="btn btn-outline-light my-2 my-sm-0" style="    width: 80px;
-        height: 35px;" type="submit">
-          Ara
-        </button>
+            height: 35px;" type="submit">Ara</button>
+        <div class="dropdown" style="    margin-left: 50px;">
+          <span>Kategoriler</span>
+          <div class="dropdown-content" style="color:black;">
+            <a class="nav-link " style="color: black;     margin-top: -30px;" href="spor">Spor</a>
+            <a class="nav-link " style="color: black;     margin-top: -30px;" href="muzik">Müzik</a>
+            <a class="nav-link " style="color: black;     margin-top: -30px;" href="Sinema">Sinema</a>
+            <a class="nav-link " style="color: black;     margin-top: -30px;" href="Meeting">Meeting</a>
+            <a class="nav-link " style="color: black;     margin-top: -30px;" href="fuar">Fuar</a>
+            <a class="nav-link " style="color: black;     margin-top: -30px;" href="fotograf">Fotoğrafçılık</a>
+          </div>
+        </div>
       </form>
     </div>
   </nav>
-  <script src="https://apis.google.com/js/platform.js"></script>
+  <!-- NAVBAR BİTİŞ-->
 
 
-  <div class="fotomain-container">
+  <div class="container">
 
-    <header class="gradient-header"
-      style="background: url(https://fotografium.com/media/rehber/mobil/mobil-hero.png); background-position: 50% 57%; background-size: cover;">
-      <div class="title">
-        <h1>Sanat </h1>
-        <p class="paragraph">Sanat ile ilgili etkinlikleri kaçırmak istemiyorsan doğru
-          yerdesin.Fotoğrafçılık,Opera,Müzik,Dans gibi bir çok sanat dalından haberdar olabilirsin.</p>
-        <div class="g-ytsubscribe" data-channel="art" data-layout="default" data-count="default"></div>
+    <div class="arkaplan">
+      <img src="https://i.hizliresim.com/86ko4d.png" alt="">
+    </div>
+    <div class="card " style="    width: 48rem;
+    position: absolute;
+    margin-left: 560px;
+    height: 220px;">
+      <div class="card-body">
+        <h5 class="card-title">Müzik</h5>
+        <h6 class="card-subtitle mb-2 text-muted">Müziğe Dair</h6>
+        <p class="card-text">Müzik severleri buluşturan etkinlikleri görmek için doğru yerdesin.</p>
+        <p class="card-text">Müziği seviyorsan tek bir dalda kalmak istemiyorsan etkinliklerimize göz atarak
+          kendini dahada geliştirebilirsin birçok insanla birlikte müzik dinleyebilirsin !
+        </p>
+
       </div>
-    </header>
+    </div>
+    <div class="row" style="    margin-top: 63px;">
+      <% veri.forEach(function(İmgAc){ %>
 
+      <div class="card-wrapper col-lg-4 col-md-6 col-xs-12">
+        <div class="card" style="    margin-top: 350px;
+        margin-left: -176px;">
+          <div class="card-img-wrapper">
+            <img class="card-img-top" src="data:image/jpg;base64,<%= İmgAc.ResimYukle %>" alt="Card image cap">
+            <!-- RESİMDE VERİTABNINDAN GELİCEK-->
 
-    <!-- CONTENT CARDS -->
-    <!-- CONTENT CARDS -->
-    <!-- CONTENT CARDS -->
-    <% veri.forEach(function(İmgAc){ %>
-
-    <div class="container" style="    margin: 0;">
-      <div class="row">
-        <div class="card-section">
-
-          <div class="rehber-card">
-            <div class="rehberheader-imgs">
-              <img class="card-img-tops" src="data:image/jpg;base64,<%= İmgAc.ResimYukle %>" alt="Card image cap">
-              <!-- RESİMDE VERİTABNINDAN GELİCEK-->
-
-            </div>
-            <div class="rehber-content">
-              <h2 class="rehberheading"><%= İmgAc.EtkinlikAdi %></h2>
-              <p class="rehbertext"><%= İmgAc.AciklamaBir %>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title"><%= İmgAc.EtkinlikAdi %></h5>
+            <div class="card-content">
+              <p class="card-text">
+                <!-- BURAYA VERİTABANINDAN AÇIKLAMA GELCEK--><%= İmgAc.AciklamaBir %>
               </p>
-              <a class="rehberbtn">Devamını Oku</a>
+
+              <a href="etkinlikbilgileri/<%=İmgAc.id%>" class="btn btn-primary">Etkinlik Bilgileri</a>
+              <a href="konusmacibilgileri/<%=İmgAc.id%>" class="btn btn-primary">Konuşmacı Bilgileri </a>
             </div>
-            <div class="space"></div>
           </div>
 
-          <% }); %>
+        </div><br><br>
 
-
-
-        </div>
-        <div class="col-sm">
-        </div>
       </div>
+      <% }); %>
 
 
-      <footer class="footer" style="background-color: #2b5ca2;
-  width: 214%;
-  text-align: left;
-  font-family: sans-serif;
-  font-weight: bold;
-  font-size: 16px;
-  margin-top: 104px;
-  margin-left: -398px;">
-        <div class="footer-left col-md-4 col-sm-6">
-          <p class="about">
-            <span> Techno EVENT</span> İnsanları monoton yaşantıdan kurtaracak projemizle karşınızdayız,
-            her gün aynı toplantılardan her gün aynı ortamlardan bunalan insanlar için,
-            dünyanın her yerinde ki organizasyonlarda bulunabilirsiniz.
-            Eğitim,bilişim,sanayi ve sanat gibi bir çok dalda etkinliklere katılacaksınız.
-          </p>
+    </div>
 
-        </div>
-        <div class="footer-center col-md-4 col-sm-6">
-          <div>
-            <i class="fa fa-map-marker"></i>
-            <p><span>Üsküdar 5450</span> İstanbul</p>
-          </div>
-          <div>
-            <i class="fa fa-phone"></i>
-            <p> 0(216) 943 2323</p>
-          </div>
-          <div>
-            <i class="fa fa-envelope"></i>
-            <p><a href="#"> technoevent@gmail.com</a></p>
-          </div>
-        </div>
-        <div class="footer-right col-md-4 col-sm-6">
-          <img src="">
-          <p class="menu">
-            <a href="#"> Anasayfa</a> |
-            <a href="#"> Hakkımızda</a> |
-            <a href="#"> Sponsorlarımız</a> |
-            <a href="#"> Oturum Aç</a> |
-          </p>
-          <p class="name"> TechnoEvent &copy; 2019</p>
-        </div>
-      </footer>
+  </div>
+
+  <footer class="footer" style="background-color: #204f91;">
+    <div class="footer-left col-md-4 col-sm-6">
+      <p class="about">
+        <span> Techno EVENT</span> İnsanları monoton yaşantıdan kurtaracak projemizle karşınızdayız,
+        her gün aynı toplantılardan her gün aynı ortamlardan bunalan insanlar için,
+        dünyanın her yerinde ki organizasyonlarda bulunabilirsiniz.
+        Eğitim,bilişim,sanayi ve sanat gibi bir çok dalda etkinliklere katılacaksınız.
+      </p>
+
+    </div>
+    <div class="footer-center col-md-4 col-sm-6">
+      <div>
+        <i class="fa fa-map-marker"></i>
+        <p><span>Üsküdar 5450</span> İstanbul</p>
+      </div>
+      <div>
+        <i class="fa fa-phone"></i>
+        <p> 0(216) 943 2323</p>
+      </div>
+      <div>
+        <i class="fa fa-envelope"></i>
+        <p><a href="#"> technoevent@gmail.com</a></p>
+      </div>
+    </div>
+    <div class="footer-right col-md-4 col-sm-6">
+      <img src="">
+      <p class="menu">
+        <a href="#"> Anasayfa</a> |
+        <a href="#"> Hakkımızda</a> |
+        <a href="#"> Sponsorlarımız</a> |
+        <a href="#"> Oturum Aç</a> |
+      </p>
+      <p class="name"> TechnoEvent &copy; 2019</p>
+    </div>
+  </footer>
 
 </body>
+
+</html>

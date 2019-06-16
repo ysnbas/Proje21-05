@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<html>
 
 <head>
     <meta charset="utf-8" />
@@ -33,7 +32,7 @@
                             class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="etkinlikolustur/<%=veri[0].Id%>">Etkinlik Oluştur</a>
+                    <a class="nav-link" href="etkinlikolustur>">Etkinlik Oluştur</a>
                 </li>
 
                 <li class="nav-item">
@@ -77,10 +76,17 @@
                                     required="required">
                             </div>
                             <div class="form-group has-icon col">
-                                <select id="sehirler" name="location" required="required">
+
+                                <select class="browser-default custom-select" id="sehirler" name="location">
+
                                 </select>
-                                <a class="button is-white" onclick="sehirlerigetir()">seçmek için dokunun</a><i
-                                    class="fa fa-map-marker input-icon"></i>
+                                <select class="browser-default custom-select" id="ilceler" name="İlces">
+
+                                </select>
+                            </div>
+
+                            <div class="form-group has-icon col">
+                                <input type="text" class="form-control" name="adres" placeholder="tam adres yazınız">
                             </div>
                         </div>
 
@@ -117,12 +123,12 @@
 
                         <h1>Açıklama</h1>
 
-                        <input type="text" name="AciklamaBir" class="textarea">
+                        <input type="text" name="AciklamaBir" class="textarea" placeholder="Açıklama">
 
 
+                        <h3>Resim Seçiniz</h3>
 
-
-                        <p>
+                        <p><br><br>
 
                             <input type="file" multiple="false" accept="image/*" id="finput" name="İmageUpload"
                                 onchange="Upload()" required="required">
@@ -137,7 +143,7 @@
                     </div>
                     <h1>Açıklama</h1>
 
-                    <input type="text" name="Aciklamaİki" class="textarea">
+                    <input type="text" name="Aciklamaİki" class="textarea" placeholder="Açıklama">
 
 
                     <h3>Sosyal Medya Linkleri</h3>
@@ -265,7 +271,46 @@
         </div>
     </footer>
 
+
 </body>
 
 
 </html>
+<script>
+
+
+    const sehirler = document.getElementById("sehirler");
+    const ilceler = document.getElementById("ilceler");
+
+    function ilceleriListele(param) {
+        var httpistegi = new XMLHttpRequest();
+        var adres = "https://raw.githubusercontent.com/enisbt/turkey-cities/master/cities.json";
+        var myArr; // Store array here so that it is accessible in both functions
+        var list1 = document.querySelector("#sehirler");
+        var list2 = document.querySelector("#ilceler");
+
+        list1.onchange = function () {
+            // Empty second list first
+            list2.innerHTML = '';
+            myArr[this.value].counties.forEach(function (model) {
+                list2.innerHTML += '<option value="' + model + '">' + model + '</option>';
+            });
+        }
+
+        httpistegi.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                myArr = JSON.parse(this.responseText);
+                myArr.forEach(function (params, index) {
+                    list1.innerHTML += '<option value="' + index + '">' + params.name + '</option>';
+                });
+                list1.onchange(); // Trigger once to populate list at first.
+            }
+        };
+        httpistegi.open("GET", adres, true);
+        httpistegi.send();
+    }
+
+    ilceleriListele();
+
+
+</script>

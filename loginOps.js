@@ -42,6 +42,8 @@ module.exports.Guncelle = function (req, res) {
         UPDATE tbl_EtkinlikOlustur set 
         EtkinlikAdi = '${req.body.yeni_etkinlikAdi}',
         Lokasyon = '${req.body.yeni_Lokasyon}',
+        İlce = '${req.body.yeni_ilce}',
+        Adres = '${req.body.yeni_adres}',
         BaslangıcTarih = '${req.body.yeni_baslangicTarihi}',
         BaslangicSaati = '${req.body.yeni_baslangicSaati}',
         BitisSaati = '${req.body.yeni_bitisSaati}',
@@ -93,10 +95,14 @@ module.exports.userLogin = function (req, res) {
     if (err) console.log(err);
     var request1 = new sql.Request();
     request1.query(
-      "INSERT INTO tbl_EtkinlikOlustur(EtkinlikAdi,Lokasyon,BaslangıcTarih,BitisTarihi,BaslangicSaati,BitisSaati,WebSiteUrl,AciklamaBir,ResimYukle,OrganizatörAdi,Aciklamaİki,FacebookLink,TwitterLink,İnstagramLink,BiletAdi,BiletUcret,BiletAdet,EkBilgi,EtkinlikTipi,EtkinlikKonusu,EtkinlikId) VALUES('" +
+      "INSERT INTO tbl_EtkinlikOlustur(EtkinlikAdi,Lokasyon,İlce,Adres,BaslangıcTarih,BitisTarihi,BaslangicSaati,BitisSaati,WebSiteUrl,AciklamaBir,ResimYukle,OrganizatörAdi,Aciklamaİki,FacebookLink,TwitterLink,İnstagramLink,BiletAdi,BiletUcret,BiletAdet,EkBilgi,EtkinlikTipi,EtkinlikKonusu,EtkinlikId) VALUES('" +
       req.body.EtkinlikAdi +
       "','" +
       req.body.location +
+      "','" +
+      req.body.İlces +
+      "','" +
+      req.body.adres +
       "','" +
       req.body.start_date +
       "','" +
@@ -471,7 +477,7 @@ module.exports.spor = function (req, res) {
   });
 };
 
-module.exports.fuar = function (req, res) {
+module.exports.fotografcilik = function (req, res) {
   // Fotoğrafçılık kategorisi
   sql.connect(webconfig, function (err) {
     if (err) console.log(err);
@@ -485,20 +491,20 @@ module.exports.fuar = function (req, res) {
     });
   });
 };
-module.exports.fuar = function (req, res) {
-  // Müze kategorisi
-  sql.connect(webconfig, function (err) {
-    if (err) console.log(err);
-    var request1 = new sql.Request();
-    request1.query("select * from tbl_EtkinlikOlustur where EtkinlikTipi = 'Müze' ", function (err, verisonucu) {
-      if (err) {
-        console.log(err);
-      }
-      sql.close();
-      res.render('muze', { veri: verisonucu.recordset });
-    });
-  });
-};
+// module.exports.muze = function (req, res) {
+//   // Müze kategorisi
+//   sql.connect(webconfig, function (err) {
+//     if (err) console.log(err);
+//     var request1 = new sql.Request();
+//     request1.query("select * from tbl_EtkinlikOlustur where EtkinlikTipi = 'Müze' ", function (err, verisonucu) {
+//       if (err) {
+//         console.log(err);
+//       }
+//       sql.close();
+//       res.render('muze', { veri: verisonucu.recordset });
+//     });
+//   });
+// };
 module.exports.Onizleme = function (req, res) {
   sql.connect(webconfig, function (err) {
     if (err) console.log(err);
