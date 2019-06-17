@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-    <script type="text/javascript" src="home.js"></script>
 </head>
 
 <body>
@@ -44,9 +43,6 @@
             </ul>
 
             <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Ara" aria-label="Search" />
-                <button class="btn btn-outline-light my-2 my-sm-0" style="    width: 80px;
-            height: 35px;" type="submit">Ara</button>
                 <div class="dropdown" style="    margin-left: 50px;">
                     <span>Kategoriler</span>
                     <div class="dropdown-content" style="color:black;">
@@ -85,12 +81,14 @@
                                 <!-- BURAYA VERİTABANINDAN AÇIKLAMA GELCEK--><%= İmgAc.AciklamaBir %>
                             </p>
 
-                            <a href="etkinlikbilgileri/<%=İmgAc.id%>" class="btn btn-primary">Etkinlik Bilgileri</a>
-                            <a href="konusmacibilgileri/<%=İmgAc.id%>" class="btn btn-primary">Konuşmacı Bilgileri </a>
-                            <form action="etkinlikleregozat" method="post">
-                                <button type="submit" class="btn btn-primary"
-                                    style="width: 95%; margin-top: 10px;">Etkinliğe Katıl</button>
-                            </form>
+                            <a href="http://localhost:3000/EtkinlikBilgileri/<%=İmgAc.id%>"
+                                class="btn btn-primary">Etkinlik Bilgileri</a>
+                            <a href="http://localhost:3000/konusmacibilgileri/<%=İmgAc.id%>"
+                                class="btn btn-primary">Konuşmacı Bilgileri </a>
+                            <a href="katil/<%= İmgAc.id %>" class="btn btn-primary"
+                                style="width: 95%; margin-top: 10px;">Etkinliğe
+                                Katıl</a>
+
                         </div>
                     </div>
 

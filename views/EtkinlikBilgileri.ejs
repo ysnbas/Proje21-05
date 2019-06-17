@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Etkinliklere Göz At</title>
+    <title>Etkinlik Bilgileri</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css" />
@@ -42,11 +42,7 @@
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Ara" aria-label="Search" />
-                <button class="btn btn-outline-light my-2 my-sm-0" style="    width: 80px;
-        height: 35px;" type="submit">
-                    Ara
-                </button>
+
             </form>
         </div>
     </nav>
@@ -73,10 +69,16 @@
                         <%= p.EtkinlikAdi %>
                     </li>
                     <li class="list-group-item">
-                        <h4>Lokasyon</h4>
+                        <h4>Adres</h4>
+                    </li>
+                    <li class="list-group-item">
+                        <%=p.Adres%>
                     </li>
                     <li class="list-group-item">
                         <%=p.Lokasyon%>
+                    </li>
+                    <li class="list-group-item">
+                        <%=p.İlce%>
                     </li>
                     <% }); %>
                 </ul>

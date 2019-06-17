@@ -33,16 +33,17 @@ app.get('/etkinlikolustur/:Id', function (req, res) {
 });
 
 app.post('/etkinlikolustur/:Id', upload.single('İmageUpload'), login.userLogin); // upload single resim için.
-app.get('/gozat', login.userGozAt);
 app.get('/etkinlikleregozat/:Id', login.userGozAt);
 app.post('/etkinlikleregozat/:Id', login.UserKatıl);
 
-app.get('/etkinlikbilgileri/:id', login.userEtkinlikBilgileri);
+app.get('/EtkinlikBilgileri/:id', login.userEtkinlikBilgileri);
 
-
+app.get('/etkinlikleregozat', login.userGozAt2)
 app.get('/Login', login.Giris);
 app.post('/Login', login.userGiris);
 app.get('/oturumac', login.UyeOl);
+app.get('/etkinlikleregozat/katil/:id', login.katil);
+
 app.post('/oturumac', login.userOturumAc);
 
 
@@ -62,13 +63,14 @@ app.get('/etkinlikguncelle/:id', login.userGuncelle);
 app.post('/etkinlikguncelle', login.Guncelle);
 app.post('/EtkinlikYonet/:id', login.sil);
 
-app.get('/kitap', login.kitap);
-app.get('/muzik', login.muzik);
-app.get('/sinema', login.sinema);
-app.get('/meeting', login.meeting);
-app.get('/fuar', login.fuar);
-app.get('/spor', login.spor);
-app.get('/fotografcilik', login.fotografcilik);
+app.get('/muzik/:Id', login.muzik);
+app.get('/sinema/:Id', login.sinema);
+app.get('/meeting/:Id', login.meeting);
+app.get('/fuar/:Id', login.fuar);
+app.get('/spor/:Id', login.spor);
+app.get('/fotografcilik/:Id', login.fotografcilik);
+
+
 
 
 app.get('/adminpanel/adminpanel', login.userPanel);
@@ -84,5 +86,7 @@ app.post('/adminpanel/etkinliklistele/:id', login.etkinlikSil);
 
 app.post('/adminpanel/:Id', login.SİL);
 
-app.post('/etkinlikleregozat', login.UserKatıl);
+
+app.get('/Etkinliklerim/:Id', login.UserEtkinliklerim);
+
 app.listen(port, () => console.log(`Port Çalışıyor :  ${port}!`));

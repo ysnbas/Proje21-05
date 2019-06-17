@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css" />
+    <link rel="stylesheet" type="text/css" href="/css/spor.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <script type="text/javascript" src="/javascript/home.js"></script>
+    <title>Etkinliklerim</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light #2b5ca2">
+        <a class="navbar-brand" href="#">TechnoEvent</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item ">
+                    <a class="nav-link" style="color:white;" href="#">Anasayfa <span
+                            class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " style="color:white;" href="#">Etkinlik Oluştur</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link " style="color:white;" href="#">Oturum Aç</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+
+            </form>
+        </div>
+    </nav>
+    <h2>Katıldığım Etkinlikler</h2>
+    <div class="container" style="    margin: 0;">
+        <div class="row" style="    margin-top: 63px;">
+            <% veri.forEach(function(İmgAc){ %>
+
+            <div class="card-wrapper col-lg-4 col-md-6 col-xs-12">
+                <div class="card">
+                    <div class="card-img-wrapper">
+                        <img class="card-img-top" src="data:image/jpg;base64,<%= İmgAc.ResimYukle %>"
+                            alt="Card image cap">
+                        <!-- RESİMDE VERİTABNINDAN GELİCEK-->
+
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title"><%= İmgAc.EtkinlikAdi %></h5>
+                        <div class="card-content">
+                            <p class="card-text">
+                                <!-- BURAYA VERİTABANINDAN AÇIKLAMA GELCEK--><%= İmgAc.AciklamaBir %>
+                            </p>
+
+                            <a href="etkinlikbilgileri/<%=İmgAc.id%>" class="btn btn-primary">Etkinlik Bilgileri</a>
+                            <a href="konusmacibilgileri/<%=İmgAc.id%>" class="btn btn-primary">Konuşmacı Bilgileri </a>
+                        </div>
+                    </div>
+
+                </div><br><br>
+
+            </div>
+            <% }); %>
+
+
+        </div>
+    </div>
+</body>
+
+</html>

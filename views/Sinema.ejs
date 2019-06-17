@@ -51,12 +51,13 @@
         <div class="dropdown" style="    margin-left: 50px;">
           <span>Kategoriler</span>
           <div class="dropdown-content" style="color:black;">
-            <a class="nav-link " style="color: black;     margin-top: -30px;" href="spor">Spor</a>
-            <a class="nav-link " style="color: black;     margin-top: -30px;" href="muzik">Müzik</a>
-            <a class="nav-link " style="color: black;     margin-top: -30px;" href="Sinema">Sinema</a>
-            <a class="nav-link " style="color: black;     margin-top: -30px;" href="Meeting">Meeting</a>
-            <a class="nav-link " style="color: black;     margin-top: -30px;" href="fuar">Fuar</a>
-            <a class="nav-link " style="color: black;     margin-top: -30px;" href="fotografcilik">Fotoğrafçılık</a>
+            <a class="nav-link " style="color: black;     margin-top: -30px;" href="spor/<%=veri[0].Id%>">Spor</a>
+            <a class="nav-link " style="color: black;     margin-top: -30px;" href="muzik/<%=veri[0].Id%>">Müzik</a>
+            <a class="nav-link " style="color: black;     margin-top: -30px;" href="Sinema/<%=veri[0].Id%>">Sinema</a>
+            <a class="nav-link " style="color: black;     margin-top: -30px;" href="Meeting/<%=veri[0].Id%>">Meeting</a>
+            <a class="nav-link " style="color: black;     margin-top: -30px;" href="fuar/<%=veri[0].Id%>">Fuar</a>
+            <a class="nav-link " style="color: black;     margin-top: -30px;"
+              href="fotografcilik/<%=veri[0].Id%>">Fotoğrafçılık</a>
           </div>
         </div>
       </form>
@@ -104,6 +105,8 @@
 
               <a href="etkinlikbilgileri/<%=İmgAc.id%>" class="btn btn-primary">Etkinlik Bilgileri</a>
               <a href="konusmacibilgileri/<%=İmgAc.id%>" class="btn btn-primary">Konuşmacı Bilgileri </a>
+              <a href="katil/<%= İmgAc.id %>" class="btn btn-primary" style="width: 95%; margin-top: 10px;">Etkinliğe
+                Katıl</a>
             </div>
           </div>
 

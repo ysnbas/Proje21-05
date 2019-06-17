@@ -3,7 +3,7 @@ const sql = require('mssql');
 var webconfig = {
   user: 'Depo  ',
   password: 'ysnbas',
-  server: '192.168.0.26',
+  server: '10.201.175.169',
   database: 'Proje'
 };
 /*
@@ -88,7 +88,20 @@ module.exports.userGozAt = function (req, res) {
     });
   });
 };
-
+module.exports.userGozAt2 = function (req, res) {
+  sql.connect(webconfig, function (err) {
+    if (err) console.log(err);
+    var request1 = new sql.Request();
+    request1.query("select * from tbl_EtkinlikOlustur", function (err, verisonucu) {
+      if (err) {
+        console.log(err);
+      }
+      console.log(verisonucu.recordset);
+      sql.close();
+      res.render('etkinlikleregozat', { veri: verisonucu.recordset });
+    });
+  });
+};
 // ETKİNLİK OLUŞTUR
 module.exports.userLogin = function (req, res) {
   sql.connect(webconfig, function (err) {
@@ -156,6 +169,19 @@ module.exports.Giris = function (req, res) {
 
   res.render('Login', { hata: '' });
 
+}
+module.exports.katil = function (req, res) {
+  sql.connect(webconfig, function (err) {
+    if (err) console.log(err);
+    var request1 = new sql.Request();
+    request1.query("INSERT INTO tbl_EtkinlikKatılımcıları VALUES ('" + req.session.ad + "'," + req.params.id + ")", function (err, data) {
+      if (err) {
+        console.log(err);
+      }
+      sql.close();
+      res.redirect('etkinlikleregozat')
+    });
+  });
 }
 
 module.exports.userOturumAc = function (req, res) {
@@ -294,7 +320,7 @@ module.exports.userEtkinlikBilgileri = function (req, res) {
         console.log(err);
       }
       sql.close();
-      res.render('EtkinlikBilgileri', { veri: data.recordset });
+      res.render('etkinlikbilgileri', { veri: data.recordset });
     });
   });
 };
@@ -527,13 +553,13 @@ module.exports.userGirisPanel = function (req, res) {
       verisonucu.recordset.forEach(function (kullanici) {
         if (kullanici.Sonuc == "Evet") {
 
-          request1.query("select * from tbl_admin where kullaniciadi='" + req.body.userid + "'", function (err, data) {
+          request1.query("select * from tbl_admin where kullaniciadi='" + req.body.userid + "'", function (err, verisonucu) {
             if (err) {
               console.log(err);
             }
 
             sql.close();
-            res.render('adminpanel', { data: data.recordset });
+            res.render('adminpanel', { veri: verisonucu.recordset });
 
           });
 
@@ -633,13 +659,29 @@ module.exports.UserKatıl = function (req, res) {
     if (err) console.log(err);
     var request1 = new sql.Request();
     // console.log(req.body);
-    request1.query("INSERT INTO tbl_EtkinlikKatılımcıları(KullanıcıAdi,KatılımcıId) VALUES('" + "',(select Adi from tbl_Uye where KullanıcıAdi='" + req.session.ad + "')'" + "',(select Id from tbl_Uye where KullanıcıAdi='" + req.session.ad + "')'" + "')",
+    request1.query("INSERT INTO tbl_EtkinlikKatılımcıları(KullanıcıAdı,KatılımcıId) VALUES('" + "'(select Adi from tbl_Uye where KullanıcıAdı='" + req.session.ad + "')'" + "'(select Id from tbl_Uye where KullanıcıAdı='" + req.session.ad + "')'" + "')",
       function (err, verisonucu) {
         if (err) {
           console.log(err);
         }
         sql.close();
         res.redirect('etkinlikleregozat');
+      });
+  });
+};
+module.exports.UserEtkinliklerim = function (req, res) {
+
+  sql.connect(webconfig, function (err) {
+    if (err) console.log(err);
+    var request1 = new sql.Request();
+    // console.log(req.body);
+    request1.query("select * from tbl_EtkinlikOlustur where id in (select KatılımcıId from tbl_EtkinlikKatılımcıları where KullanıcıAdı = '" + req.session.ad + "')",
+      function (err, verisonucu) {
+        if (err) {
+          console.log(err);
+        }
+        sql.close();
+        res.render('Etkinliklerim', { veri: verisonucu.recordset });
       });
   });
 };

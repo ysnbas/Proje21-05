@@ -31,9 +31,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="etkinlikolustur/<%=veri[0].Id%>">Etkinlik Oluştur</a>
                 </li>
-                <% veri.forEach(function(p){ %>
+                <% veri.forEach(function(ppp){ %>
                 <li class=" nav-item">
-                    <a class="nav-link" href="profil/<%=veri[0].Id%>"><%=p.Adi%></a>
+                    <a class="nav-link" href="profil/<%=veri[0].Id%>"><%=ppp.Adi%></a>
                 </li>
                 <% }); %>
 
@@ -41,25 +41,34 @@
                     <a class="nav-link" href="EtkinlikYonet/<%=veri[0].Id%>">Etkinlikleri Yönet</a>
                 </li>
                 <li class=" nav-item">
-                    <a class="nav-link" href="EtkinlikYonet/<%=veri[0].Id%>">Etkinliklerim</a>
+                    <a class="nav-link" href="Etkinliklerim/<%=veri[0].Id%>">Etkinliklerim</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="etkinlikleregozat/<%=veri[0].Id%>">Etkinliklere Gözat</a>
                 </li>
-
+                <li class="nav-item">
+                    <a class="nav-link" href="Login">Çıkış yap</a>
+                </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
 
                 <div class="dropdown" style="    margin-left: 50px;">
                     <span>Kategoriler</span>
                     <div class="dropdown-content" style="color:black;">
-                        <a class="nav-link " style="color: black;     margin-top: -30px;" href="spor">Spor</a>
-                        <a class="nav-link " style="color: black;     margin-top: -30px;" href="muzik">Müzik</a>
-                        <a class="nav-link " style="color: black;     margin-top: -30px;" href="Sinema">Sinema</a>
-                        <a class="nav-link " style="color: black;     margin-top: -30px;" href="Meeting">Meeting</a>
-                        <a class="nav-link " style="color: black;     margin-top: -30px;" href="fuar">Fuar</a>
                         <a class="nav-link " style="color: black;     margin-top: -30px;"
-                            href="fotografcilik">Fotoğrafçılık</a>
+                            href="spor/<%=veri[0].Id%>">Spor</a>
+                        <a class="nav-link " style="color: black;     margin-top: -30px;"
+                            href="muzik/<%=veri[0].Id%>">Müzik</a>
+                        <a class="nav-link " style="color: black;     margin-top: -30px;"
+                            href="Sinema/<%=veri[0].Id%>">Sinema</a>
+                        <a class="nav-link " style="color: black;     margin-top: -30px;"
+                            href="Meeting/<%=veri[0].Id%>">Meeting</a>
+                        <a class="nav-link " style="color: black;     margin-top: -30px;"
+                            href="fuar/<%=veri[0].Id%>">Fuar</a>
+                        <a class="nav-link " style="color: black;     margin-top: -30px;"
+                            href="fotografcilik/<%=veri[0].Id%>">Fotoğrafçılık</a>
+
+
                     </div>
                 </div>
             </form>
