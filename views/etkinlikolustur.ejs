@@ -77,10 +77,12 @@
                             </div>
                             <div class="form-group has-icon col">
 
-                                <select class="browser-default custom-select" id="sehirler" name="location">
+                                <select class="browser-default custom-select" id="sehirler" name="location"
+                                    required="required">
 
                                 </select>
-                                <select class="browser-default custom-select" id="ilceler" name="İlces">
+                                <select class="browser-default custom-select" id="ilceler" name="İlces"
+                                    required="required">
 
                                 </select>
                             </div>
@@ -213,7 +215,13 @@
                     <div class="control">
                         <div class="select">
                             <select name="Konu" required="required">
-                                <option>Konser</option>
+                                <option>Etkinlik Konusu Seçiniz</option>
+                                <option value="Bilişim">Bilişim</option>
+                                <option value="Opera">Opera</option>
+                                <option value="Kültürel Gezi">Kültürel Gezi</option>
+                                <option value="Dünya Mutfağı">Dünya Mutfağı</option>
+                                <option value="Teknoloji">Teknoloji</option>
+                                <option value="Elektronik">Elektronik</option>
                             </select>
                         </div>
                     </div><br>

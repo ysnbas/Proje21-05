@@ -77,16 +77,13 @@
                 placeholder="Etkinlik Adını Düzenle" autocapitalize="words" autocomplete="off">
             </div>
             <div class="form-group has-icon col">
-              <select id="sehirler" name="yeni_lokasyon">
-              </select>
-              <a class="button is-white" onclick="sehirlerigetir()">seçmek için dokunun</a>
-              <i class="fa fa-map-marker input-icon"></i>
-            </div>
-            <div class="form-group has-icon col">
-              <select id="ilceler" name="yeni_ilce" required="required"></select>
 
-              <a class="button is-white" onclick="ilcelerigetir()">İlçe seçmek için dokunun</a><i
-                class="fa fa-map-marker input-icon"></i>
+              <select class="browser-default custom-select" id="sehirler" name="yeni_location">
+
+              </select>
+              <select class="browser-default custom-select" id="ilceler" name="yeni_İlces">
+
+              </select>
             </div>
             <div class="form-group has-icon col">
               <input type="text" class="form-control" name="yeni_adres" placeholder="tam adres yazınız">
@@ -199,14 +196,15 @@
                 </div>
                 <br>
                 <a>NOT: ÜCRET KISMI BOŞ KALIRSA ÜCRETSİZ BİLET DEMEKTİR...</a>
+
+                <hr>
+                <h3>Ek Bilgi</h3>
+                <!-- <form action=""></form>  -->
+                <input type="radio" name="yeni_Public" value="1"> Herkese Açık: Bu etkinliği herkese açık olarak
+                listele<br>
+                <input type="radio" name="yeni_Public" value="0"> Gizli Sayfa: Bu etkinliği herkese açık olarak
+                listeleme<br>
               </label>
-              <hr>
-              <h3>Ek Bilgi</h3>
-              <!-- <form action=""></form>  -->
-              <input type="radio" name="yeni_Public" value="1"> Herkese Açık: Bu etkinliği herkese açık olarak
-              listele<br>
-              <input type="radio" name="yeni_Public" value="0"> Gizli Sayfa: Bu etkinliği herkese açık olarak
-              listeleme<br>
               <br>
               <h3>Etkinlik Tipi</h3>
               <div class="control">
@@ -296,19 +294,46 @@
     </div>
   </footer>
   <!--- FORM KISIMI BİTİŞ-->
-  <script>
-    function Upload() {
-      var cc1 = document.getElementById("can1");
-      var fileinput = document.getElementById("finput");
-      var image = new SimpleImage(fileinput);
-      image.drawTo(cc1);
-    }
-    editor.document.designMode = "On";
-    function transform(option, argument) {
-      editor.document.execCommand(option, false, argument);
-    }
-  </script>
+
 </body>
 
 
 </html>
+<script>
+
+
+  const sehirler = document.getElementById("sehirler");
+  const ilceler = document.getElementById("ilceler");
+
+  function ilceleriListele(param) {
+    var httpistegi = new XMLHttpRequest();
+    var adres = "https://raw.githubusercontent.com/enisbt/turkey-cities/master/cities.json";
+    var myArr; // Store array here so that it is accessible in both functions
+    var list1 = document.querySelector("#sehirler");
+    var list2 = document.querySelector("#ilceler");
+
+    list1.onchange = function () {
+      // Empty second list first
+      list2.innerHTML = '';
+      myArr[this.value].counties.forEach(function (model) {
+        list2.innerHTML += '<option value="' + model + '">' + model + '</option>';
+      });
+    }
+
+    httpistegi.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        myArr = JSON.parse(this.responseText);
+        myArr.forEach(function (params, index) {
+          list1.innerHTML += '<option value="' + index + '">' + params.name + '</option>';
+        });
+        list1.onchange(); // Trigger once to populate list at first.
+      }
+    };
+    httpistegi.open("GET", adres, true);
+    httpistegi.send();
+  }
+
+  ilceleriListele();
+
+
+</script>

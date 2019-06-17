@@ -63,12 +63,12 @@ app.get('/etkinlikguncelle/:id', login.userGuncelle);
 app.post('/etkinlikguncelle', login.Guncelle);
 app.post('/EtkinlikYonet/:id', login.sil);
 
-app.get('/muzik/:Id', login.muzik);
-app.get('/sinema/:Id', login.sinema);
-app.get('/meeting/:Id', login.meeting);
-app.get('/fuar/:Id', login.fuar);
-app.get('/spor/:Id', login.spor);
-app.get('/fotografcilik/:Id', login.fotografcilik);
+app.get('/muzik', login.muzik);
+app.get('/sinema', login.sinema);
+app.get('/meeting', login.meeting);
+app.get('/fuar', login.fuar);
+app.get('/spor', login.spor);
+app.get('/fotografcilik', login.fotografcilik);
 
 
 

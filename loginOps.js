@@ -41,8 +41,8 @@ module.exports.Guncelle = function (req, res) {
       `
         UPDATE tbl_EtkinlikOlustur set 
         EtkinlikAdi = '${req.body.yeni_etkinlikAdi}',
-        Lokasyon = '${req.body.yeni_Lokasyon}',
-        İlce = '${req.body.yeni_ilce}',
+        Lokasyon = '${req.body.yeni_location}',
+        İlce = '${req.body.yeni_İlces}',
         Adres = '${req.body.yeni_adres}',
         BaslangıcTarih = '${req.body.yeni_baslangicTarihi}',
         BaslangicSaati = '${req.body.yeni_baslangicSaati}',
@@ -67,7 +67,7 @@ module.exports.Guncelle = function (req, res) {
           console.log(err);
 
         } else {
-          res.send('EtkinlikYonet e geri gitmesi gerekiyor!!!!!!!!!!!!!');
+          res.redirect('EtkinlikYonet');
         }
         sql.close();
       }
@@ -179,7 +179,7 @@ module.exports.katil = function (req, res) {
         console.log(err);
       }
       sql.close();
-      res.redirect('etkinlikleregozat')
+      res.send('etkinlikleregozat')
     });
   });
 }
@@ -303,7 +303,7 @@ module.exports.usersifreunutmak = function (req, res) {
       if (err) {
         console.log(err);
       }
-      res.render('KullaniciGiris');
+      res.render('Anasayfa');
       sql.close();
     });
   });
